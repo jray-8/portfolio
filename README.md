@@ -2,13 +2,16 @@
 
 Welcome to my portfolio!
 
-This repository contains a collection of interactive projects that showcase my skills in data science, machine learning, AI, and software development.
+This repository contains a collection of interactive projects that showcase my skills in:
+
+- Data Science
+- Mathematics
+- Machine Learning
+- Software Development
 
 ## Projects
 
 - [Boids Simulation](projects/boids/index.html)
-- [Mandelbrot Fractal](projects/mandelbrot/index.html)
-- [Neural Network Playground](projects/nn-playground/index.html)
 
 ## Setup
 
