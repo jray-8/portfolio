@@ -3,57 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Boids Simulator</title>
-	<link rel="stylesheet" href="css/boids.css">
+	<title>boids</title>
 </head>
-
 <body>
-	<div class="container">
-		<!-- Settings Panel -->
-		<aside class="settings-panel">
-			<h2>Boids Simulator</h2>
-
-			<nav class="tabs">
-				<button class="tab active" data-boid="red">Red Boids</button>
-				<button class="tab" data-boid="yellow">Yellow Boids</button>
-				<button class="tab" data-boid="blue">Blue Boids</button>
-				<button class="tab" data-boid="green">Green Boids</button>
-				<button class="tab" data-boid="white">White Boids</button>
-			</nav>
-
-			<div class="settings-content">
-				<div class="settings-group" data-boid="red">
-					<h3>Red Boid Settings</h3>
-					<label>
-						Speed:
-						<input type="range" id="red-speed" min="1" max="10" value="5">
-					</label>
-					<label>
-						Cohesion:
-						<input type="range" id="red-cohesion" min="1" max="10" value="5">
-					</label>
-					<label>
-						Separation:
-						<input type="range" id="red-separation" min="1" max="10" value="5">
-					</label>
-					<label>
-						Alignment:
-						<input type="range" id="red-alignment" min="1" max="10" value="5">
-					</label>
-					<button class="regenerate">Regenerate</button>
-					<button class="reset">Reset to Defaults</button>
-				</div>
-
-				<!-- Similar content groups for yellow, blue, green, and white boids -->
-			</div>
-		</aside>
-
-		<!-- Canvas for Boids -->
-		<main class="canvas-container">
-			<canvas id="boidsCanvas"></canvas>
-		</main>
-	</div>
-
-	<script src="js/boids.js"></script>
 </body>
 </html>

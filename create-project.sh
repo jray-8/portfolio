@@ -23,7 +23,7 @@ fi
 mkdir -p "$project_dir/js" "$project_dir/css"
 
 # Create a simple index.html file inside the project directory
-cat > "$project_dir/index.html" <<EOL
+cat > "$project_dir/index.html" << EOL
 <!DOCTYPE html>
 <html lang="en">
 <head>
