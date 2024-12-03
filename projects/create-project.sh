@@ -10,8 +10,7 @@ fi
 
 project_name="$1" # Assign the passed argument to project_name
 
-# Define the project directory
-project_dir="projects/$project_name"
+project_dir="$project_name" # Define the project directory
 
 if [ -d "$project_dir" ]; then
 	echo "Error: Project '$project_name' already exists."
@@ -37,5 +36,8 @@ cat > "$project_dir/index.html" << EOL
 EOL
 
 # Confirmation message
-echo "Project '$project_name' created at $project_dir with index.html"
+echo "Project '$project_name' created with:"
+echo "$project_dir/index.html"
+echo "$project_dir/css/"
+echo "$project_dir/js/"
 read -p "Press Enter to exit..."
