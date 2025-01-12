@@ -3,8 +3,29 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>boids</title>
+	<title>Boids Simulator</title>
+	<link rel="stylesheet" href="css/boids.css">
 </head>
 <body>
+	<!-- Main container for boids and the settings panel -->
+	<div id="container">
+		<!-- p5.js canvas will be inserted here by JS -->
+		<div id="canvas-container"></div>
+
+		<!-- Settings Panel -->
+		<div id="settings-panel">
+			<h2>Boids Settings</h2>
+			<div id="tabs">
+				<!-- Tabs for different boid types -->
+			</div>
+		</div>
+	</div>
+
+	<!-- Include p5.js library -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/p5.min.js" integrity="sha512-1YMgn4j8cIL91s14ByDGmHtBU6+F8bWOMcF47S0cRO3QNm8SKPNexy4s3OCim9fABUtO++nJMtcpWbINWjMSzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<!-- Custom scripts -->
+	<script src="js/sketch.js"></script>
+	<script src="js/boids.js"></script>
 </body>
 </html>
