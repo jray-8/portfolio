@@ -1,0 +1,71 @@
+[
+	{
+		"name": "My Cool HTML Project",
+		"description": "An amazing interactive site about XYZ.",
+		"type": "html",
+		
+		"links": {
+			"d": "suckmydick.org",
+			"live": "https://yourgithubusername.github.io/project-folder",
+			"github": "https://github.com",
+			"download": "download!"
+		},
+
+		"subprojects": [
+			{
+				"name": "Mini Game",
+				"links": {
+					"live": "https://yourgithubusername.github.io/project-folder/mini-game",
+					"github": "https://github.com/yourgithubusername/project-folder/tree/main/mini-game",
+					"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder/tree/main/mini-game"
+				},
+				"subprojects": [
+					{
+						"name": "Mini Game",
+						"description": "A fun little game made in JS.",
+						"type": "html",
+						"links": {
+							"live": "https://yourgithubusername.github.io/project-folder/mini-game",
+							"github": "https://github.com/yourgithubusername/project-folder/tree/main/mini-game",
+							"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder/tree/main/mini-game"
+						},
+						"subprojects": [
+							{
+								"name": "Mini Game",
+								"description": "A fun little game made in JS.",
+								"type": "html",
+								"links": {
+									"live": "https://yourgithubusername.github.io/project-folder/mini-game",
+									"github": "https://github.com/yourgithubusername/project-folder/tree/main/mini-game",
+									"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder/tree/main/mini-game"
+								}
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "Dick Game",
+				"description": "A fun little game made in JS.",
+				"type": "html",
+				"links": {
+					"live": "https://yourgithubusername.github.io/project-folder/mini-game",
+					"github": "https://github.com/yourgithubusername/project-folder/tree/main/mini-game",
+					"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder/tree/main/mini-game"
+				}
+			}
+		]
+	},
+
+	{
+		"name": "Data Analysis Notebook",
+		"description": "A Jupyter notebook exploring datasets.",
+		"type": "jupyter",
+		"links": {
+			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
+			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
+			"github": "https://github.com/yourgithubusername/project-folder",
+			"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder"
+		}
+	}
+]
