@@ -22,8 +22,10 @@ function createProjectElement(project, isSubproject = false) {
 	const preview = project.links?.preview; // Check if preview link exists, undefined otherwise
 	const titleContent = preview
 		? `<a href="${preview}" target="_blank" class="project-title">${project.name}</a>`
-		: `<span class="project-title">${project.name}</span>`
-	;
+		: `<span class="project-title">${project.name}</span>`;
+
+	// Check for description
+	const description = project.description ? `<p>${project.description}</p>` : '';
 
 	// Generate icons
 	const icons = generateIconLinks(project.links);
@@ -38,7 +40,7 @@ function createProjectElement(project, isSubproject = false) {
 			</div>
 		</div>
 		<div class="project-content">
-			<p>${project.description}</p>
+			${description}
 		</div>
 	`;
 
