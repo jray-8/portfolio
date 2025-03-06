@@ -14,6 +14,7 @@
 		"subprojects": [
 			{
 				"name": "Mini Game",
+				"expanded": true,
 				"links": {
 					"live": "https://yourgithubusername.github.io/project-folder/mini-game",
 					"github": "https://github.com/yourgithubusername/project-folder/tree/main/mini-game",

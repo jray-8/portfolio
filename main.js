@@ -36,7 +36,7 @@ function createProjectElement(project, isSubproject = false) {
 			${titleContent}
 			<div class="project-icons">
 				${icons}
-				<span class="arrow"><i class="fas fa-chevron-right"></i></span>
+				<span class="arrow" tabindex="0"><i class="fas fa-chevron-right"></i></span>
 			</div>
 		</div>
 		<div class="project-content">
@@ -52,7 +52,7 @@ function createProjectElement(project, isSubproject = false) {
 	}
 
 	// Attach event listeners to handling expanding/collapsing header
-	setupExpandCollapse(projectEl);
+	setupExpandCollapse(projectEl, project.expanded);
 
 	return projectEl;
 }
@@ -72,14 +72,19 @@ function generateSubprojects(subprojects) {
 }
 
 /** Adds event listeners to a project element to control content area */
-function setupExpandCollapse(projectEl) {
+function setupExpandCollapse(projectEl, startExpanded = false) {
 	const header = projectEl.querySelector('.project-header');
 	const content = projectEl.querySelector('.project-content');
 
 	// Show or hide content region
 	function toggleExpand() {
-		projectEl.classList.toggle('expanded');
-		content.style.display = projectEl.classList.contains('expanded') ? 'block' : 'none';
+		const isExpanded = projectEl.classList.toggle('expanded');
+		content.style.display = isExpanded ? 'block' : 'none';
+	}
+
+	// If the content should be open initially, change states immediately
+	if (startExpanded) {
+		toggleExpand();
 	}
 
 	// Click anywhere on header *except links* to expand
@@ -90,9 +95,10 @@ function setupExpandCollapse(projectEl) {
 	});
 
 	// Enter key when project div is focused
-	projectEl.addEventListener('keydown', (event) => {
+	projectEl.addEventListener('keyup', (event) => {
 		if (event.key === 'Enter') {
 			toggleExpand();
+			event.stopPropagation(); // Do not collapse parent projects
 		}
 	});
 }
