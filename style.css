@@ -8,13 +8,14 @@ body {
 	background: linear-gradient(86deg, rgba(8,159,79,1) 0%, rgba(2,222,194,1) 100%);
 	background: url('assets/checkered-space.jpg') fixed;
 	background-size: cover;
-	color: #fff;
+	color: #e7e7e7;
 	font-family: 'Segoe UI', sans-serif;
 	text-align: center;
 	margin: 0;
 }
 
 header h1 {
+	color: #fff;
 	font-size: 3rem;
 	text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
 	padding: 20px;
@@ -34,7 +35,7 @@ footer {
 }
 
 footer a {
-	color: #fff;
+	color: #e7e7e7;
 	text-decoration: none;
 }
 
@@ -53,8 +54,6 @@ footer a:hover {
 /* PROJECT STYLING */
 .project {
 	background: rgba(0, 0, 0, 0.9);
-	color: #e7e7e7;
-
 	margin: 25px auto;
 	padding: 0 10px;
 	border-radius: 30px;
@@ -62,7 +61,7 @@ footer a:hover {
 	outline: 2px solid rgba(255, 255, 255, 0.05);
 }
 
-.project:hover {
+.project.selected {
 	transform: scale(1.05);
 	box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 	outline: 1px solid rgba(255, 255, 255, 0.4);
@@ -119,12 +118,6 @@ footer a:hover {
 	transform: scale(1.2);
 }
 
-/* Focused project div */
-.project[tabindex="0"]:focus {
-	/* outline: 2px solid #007BFF; */
-	outline: none;
-}
-
 
 /* SUBPROJECT STYLING */
 .subprojects {
@@ -148,7 +141,7 @@ footer a:hover {
 	border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.subproject:hover {
+.subproject.selected {
 	transform: scale(1.05);
 	border: 1px solid rgba(255, 255, 255, 0.4);
 }
