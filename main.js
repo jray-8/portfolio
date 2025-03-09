@@ -32,6 +32,9 @@ function createProjectElement(spec, isSubproject = false) {
 	// Check for description
 	const description = spec.description ? `<p>${spec.description}</p>` : '';
 
+	// Check for image
+	const imageContent = spec.image ? `<img src="${spec.image}" alt="${spec.name} image" class="project-image">` : '';
+
 	// Generate icons
 	const icons = generateIconLinks(spec.links);
 
@@ -46,6 +49,7 @@ function createProjectElement(spec, isSubproject = false) {
 		</div>
 		<div class="project-content">
 			${description}
+			${imageContent}
 		</div>
 	`;
 
@@ -77,6 +81,7 @@ function generateSubprojects(subprojects) {
 }
 
 function generateIconLinks(links) {
+	if (!links) return;
 	const icons = {
 		'live': 'fas fa-globe', 					// Website hosted on GitHub Pages
 		'github': 'fab fa-github', 					// Link to GitHub repo

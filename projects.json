@@ -3,6 +3,7 @@
 		"name": "My Cool HTML Project",
 		"description": "An amazing interactive site about XYZ.",
 		"type": "html",
+		"image": "assets/space.jpg",
 		
 		"links": {
 			"d": "suckmydick.org",
