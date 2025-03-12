@@ -2,8 +2,20 @@ document.addEventListener('DOMContentLoaded', function () {
 	fetch('projects.json')
 		.then(response => response.json())
 		.then(projects => displayProjects(projects))
-		.catch(error => console.error('Error loading projects:', error));
+		.catch(error => { 
+			console.error('Error loading projects:', error);
+			showErrorMessage('Failed to load projects. Please check your connection.');
+		});
 });
+
+function showErrorMessage(message) {
+	const errorDiv = document.createElement('div');
+	errorDiv.classList.add('error-box');
+	const warningSign = '<i class="fas fa-triangle-exclamation"></i>';
+	errorDiv.innerHTML = `${warningSign} <span>${message}</span> ${warningSign}`;
+	const container = document.getElementById('projects-container');
+	container.append(errorDiv);
+}
 
 function displayProjects(projectSpecs) {
 	const container = document.getElementById('projects-container');
@@ -69,7 +81,7 @@ function createProjectElement(spec, isSubproject = false) {
 /** Returns the div element for a list of subprojects under a project */
 function generateSubprojects(subprojects) {
 	const subprojectsContainer = document.createElement('div');
-	subprojectsContainer.classList.add('subprojects');
+	subprojectsContainer.classList.add('subprojects-container');
 
 	// Recursively create new subprojects
 	subprojects.forEach(spec => {
@@ -111,8 +123,8 @@ function updateSelection(newIndex, scroll = false) {
 	selectedIndex = newIndex ?? -1;
 	if (selectedIndex >= 0) {
 		projects[selectedIndex].classList.add('selected');
-		if (scroll) { // Make project centered within scrollable region
-			projects[selectedIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+		if (scroll) { // Move this project to the top of the scrollable region
+			projects[selectedIndex].scrollIntoView({ behavior: 'smooth', block: 'start' });
 		}
 	}
 }
@@ -124,7 +136,7 @@ function toggleExpand(projectEl) {
 	content.style.display = isExpanded ? 'block' : 'none';
 }
 
-/**  Add event listeners for expanding/collapsing a project's content area */
+/** Add event listeners for expanding/collapsing a project's content area */
 function setupExpandCollapse(projectEl, startExpanded = false) {
 	const header = projectEl.querySelector('.project-header');
 
