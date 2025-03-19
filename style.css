@@ -1,13 +1,20 @@
 
 html {
 	color-scheme: dark;
+	
+	/* Global styles -- defaults */
+	--subproject-bg: rgba(255, 255, 255, 0.05);
+	--subproject-selected-bg: rgba(15, 15, 15, 0.4);
 }
 
 body {
-	background: rgb(8,159,79);
-	background: linear-gradient(86deg, rgba(8,159,79,1) 0%, rgba(2,222,194,1) 100%);
-	background: url('assets/blue-space.jpg') fixed;
-	background-size: cover;
+	background-color: #121212;
+	background-image: linear-gradient(86deg, rgba(8,159,79,1) 0%, rgba(2,222,194,1) 100%);
+	background-image: url('assets/bg/bw-4.jpg'); /* Default bg */
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover; /* Scale to fit screen, cropping excess */
+	/* background-position: center; */
 	color: #e7e7e7;
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
@@ -30,17 +37,21 @@ body {
 	text-align: center;
 }
 
-.error-box {
-	width: fit-content;
-	margin: auto;
-	padding: 20px;
-	border-radius: 20px;
-	font-size: 1.5rem;
-	color: rgb(255, 255, 98);
-
+/* Floating text box effect */
+.error-box, h1, footer {
 	background-color: rgba(0, 0, 0, 0.9);
 	box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 	outline: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.error-box {
+	width: fit-content;
+	margin: auto;
+	margin-top: 45px;
+	padding: 20px 25px;
+	border-radius: 20px;
+	font-size: 1.5rem;
+	color: rgb(255, 255, 98);
 }
 
 h1 {
@@ -48,27 +59,20 @@ h1 {
 	font-size: 3rem;
 	text-shadow: 3px 4px 0 rgb(30, 48, 56);
 
-	background-color: rgba(0, 0, 0, 0.9);
-	box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-	outline: 2px solid rgba(255, 255, 255, 0.4);
-
 	width: fit-content;
 	margin: 0.67em auto;
 	margin-bottom: 50px;
 	padding: 10px 40px 20px;
-	border-radius: 25px;
+	border-radius: 30px;
 	user-select: none;
 }
 
 footer {
-	background-color: rgba(0, 0, 0, 0.9);
 	text-align: center;
 	font-size: 1.1rem;
-	padding: 0px 40px;
+	padding: 0 40px 5px;
 	margin-bottom: 20px;
-	border-radius: 25px;
-	box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-	outline: 2px solid rgba(255, 255, 255, 0.4);
+	border-radius: 30px;
 }
 
 footer a {
@@ -100,7 +104,6 @@ footer a:active {
 	border-radius: 40px;
 	outline: 2px solid rgba(255, 255, 255, 0.07);
 	transition: all 0.3s ease-in-out;
-	will-change: transform;
 }
 
 .project.selected {
@@ -118,6 +121,7 @@ footer a:active {
 	cursor: pointer;
 	user-select: none;
 	padding: 20px;
+	will-change: transform;
 }
 
 .project-content {
@@ -143,6 +147,7 @@ footer a:active {
 .arrow {
 	margin-left: 15px;
 	transition: transform 0.3s;
+	will-change: transform;
 }
 
 .project.expanded > .project-header .arrow {
@@ -164,6 +169,7 @@ footer a:active {
 
 .project-icons a:hover {
 	transform: scale(1.2);
+	will-change: transform;
 }
 
 
@@ -174,22 +180,17 @@ footer a:active {
 }
 
 .subproject {
-	/* background: rgb(255, 255, 255, 0.05); */
-	/* background-color: rgba(18, 238, 220, 0.07); */
-	background-color: rgba(34, 166, 206, 0.1);
-	background-color: rgba(131, 236, 255, 0.1);
-	/* background-color: rgba(73, 255, 209, 0.386); */
-	
+	background-color: var(--subproject-bg);
 	margin: 15px auto;
 	padding: 0 10px;
 	border-radius: 15px;
-	border: 1px solid rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.07);
 	transition: all 0.3s ease-in-out;
-	will-change: transform;
 }
 
 .subproject.selected {
-	transform: scale(1.05);
+	/* transform: scale(1.05); */
+	background-color: var(--subproject-selected-bg);
 	border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
@@ -208,7 +209,7 @@ footer a:active {
 }
 
 .subproject .project-icons {
-	gap: 10px;
+	gap: 12px;
 }
 
 .subproject .project-icons a {
