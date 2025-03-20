@@ -13,12 +13,13 @@ body {
 	background-image: url('assets/bg/bw-4.jpg'); /* Default bg */
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	background-size: cover; /* Scale to fit screen, cropping excess */
+	/* Scale to fit screen, cropping excess */
+	background-size: cover;
 	/* background-position: center; */
 	color: #e7e7e7;
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
-	transition: background-image 1s ease-in-out;
+	transition: background-image 0.5s ease-in-out;
 }
 
 #layout {
@@ -165,7 +166,7 @@ footer a:active {
 	color: #e7e7e7;
 	font-size: 1.5rem;
 	text-decoration: none;
-	transition: 0.3s;
+	transition: transform 0.3s;
 }
 
 .project-icons a:hover {
@@ -186,7 +187,7 @@ footer a:active {
 	padding: 0 10px;
 	border-radius: 15px;
 	border: 1px solid rgba(255, 255, 255, 0.07);
-	transition: background-color 1s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 
 .subproject.selected {

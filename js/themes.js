@@ -40,8 +40,6 @@ class Theme {
 	}
 }
 
-let themeIndex = 0;
-
 const themes = [
 	new Theme('checkered-space-2.jpg', 	NIGHT_PURPLE),
 	new Theme('blue-checkered.jpg', 	DEEP_BLUE),
@@ -77,14 +75,44 @@ const themes = [
 	new Theme('glory.jpg', 				PYRAMID)
 ];
 
-// Scroll through background themes using: Alt + Wheel
+let themeIndex = 0;
+let transitioning = false;
+
+/** Transition background theme to the next one in order */
+function switchTheme(dir) {
+	if (transitioning) return;
+	transitioning = true;
+	themeIndex = (themeIndex + dir + themes.length) % themes.length;
+	themes[themeIndex].apply();
+}
+
+// Scroll through themes using: Alt + Wheel
 document.addEventListener('wheel', (event) => {
 	if (event.altKey) {
 		event.preventDefault();
-		themeIndex = (themeIndex + (event.deltaY > 0 ? 1 : -1) + themes.length) % themes.length;
-		themes[themeIndex].apply();
+		switchTheme(event.deltaY > 0 ? 1 : -1);
 	}
 }, { passive: false} );
+
+// Change themes with: Alt + Arrow keys
+document.addEventListener('keydown', (event) => {
+	if (event.altKey) {
+		event.stopImmediatePropagation();
+		if (event.code === 'ArrowUp' || event.code === 'ArrowLeft') {
+			switchTheme(-1);
+		}
+		else if (event.code === 'ArrowDown' || event.code === 'ArrowRight') {
+			switchTheme(1);
+		}
+	}
+});
+
+// Finished theme transition
+document.body.addEventListener('transitionend', (event) => {
+	if (event.propertyName === 'background-image') {
+		transitioning = false;
+	}
+});
 
 
 /** Choose and apply a random background theme */
@@ -93,7 +121,7 @@ function randomizeTheme() {
 	themes[themeIndex].apply();
 }
 
-/** Randomize the cycle order of themes */
+/** Randomize the order themes will switch to */
 function randomizeCycleOrder() {
 	let i = themes.length;
 	while (i > 1) {
