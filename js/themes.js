@@ -78,6 +78,17 @@ const themes = [
 let themeIndex = 0;
 let transitioning = false;
 
+const imageCache = []; // Maintain references to Image objects so they can be loaded seamlessly
+
+/** Preload all background images */
+function preloadThemeImages() {
+	themes.forEach(theme => {
+		const img = new Image();
+		img.src = `assets/bg/${theme.bgUrl}`;
+		imageCache.push(img);
+	});
+}
+
 /** Transition background theme to the next one in order */
 function switchTheme(dir) {
 	if (transitioning) return;
@@ -132,4 +143,7 @@ function randomizeCycleOrder() {
 
 
 // Start each page load with a random theme
-document.addEventListener('DOMContentLoaded', randomizeTheme);
+document.addEventListener('DOMContentLoaded', () => {
+	preloadThemeImages();
+	randomizeTheme();
+});
