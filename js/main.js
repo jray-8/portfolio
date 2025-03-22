@@ -37,9 +37,9 @@ function createProjectElement(spec, isSubproject = false) {
 	projectEl.classList.add(isSubproject ? 'subproject' : 'project'); // Differentiate nested projects
 
 	// Generate title
-	const preview = spec.links?.preview; // Check if preview link exists, undefined otherwise
-	const titleContent = preview
-		? `<a href="${preview}" target="_blank" class="project-title">${spec.name}</a>`
+	// Check if preview link exists
+	const titleContent = spec.preview
+		? `<a href="${spec.preview}" target="_blank" class="project-title">${spec.name}</a>`
 		: `<span class="project-title">${spec.name}</span>`;
 
 	// Check for description
@@ -51,7 +51,7 @@ function createProjectElement(spec, isSubproject = false) {
 	// Generate icons
 	const icons = generateIconLinks(spec.links);
 
-	// Create the surface structure
+	// Create the project structure
 	projectEl.innerHTML = `
 		<div class="project-header">
 			${titleContent}
@@ -94,7 +94,7 @@ function generateSubprojects(subprojects) {
 }
 
 function generateIconLinks(links) {
-	if (!links) return;
+	if (!links) return '';
 	const icons = {
 		'live': 'fas fa-globe', 					// Website hosted on GitHub Pages
 		'github': 'fab fa-github', 					// Link to GitHub repo
@@ -140,6 +140,7 @@ function toggleExpand(projectEl) {
 /** Add event listeners for expanding/collapsing a project's content area */
 function setupExpandCollapse(projectEl, startExpanded = false) {
 	const header = projectEl.querySelector('.project-header');
+	const arrow = projectEl.querySelector('.arrow');
 
 	// If the content should be open initially, change states immediately
 	if (startExpanded) {
@@ -153,11 +154,11 @@ function setupExpandCollapse(projectEl, startExpanded = false) {
 		}
 	});
 
-	// Enter key when project div is focused
-	projectEl.addEventListener('keydown', (event) => {
+	// Enter key when the arrow icon is focused
+	arrow.addEventListener('keydown', (event) => {
 		if (event.code === 'Enter') {
 			toggleExpand(projectEl);
-			event.stopPropagation(); // Do not collapse parent projects, ignore selectedIndex enter press
+			event.stopPropagation(); // Ignore enter press for the `selectedIndex` project
 
 			// Select the expanded project
 			const index = projects?.indexOf(projectEl);
@@ -204,12 +205,13 @@ function setupKeydownSelection() {
 
 		// Expand/collapse content
 		else if (event.code === 'Enter' && selectedIndex >= 0) {
-			toggleExpand(projects[selectedIndex]);
-			event.preventDefault();
+			// Only expand if no link or icon has focus
+			if (document.activeElement === document.body) toggleExpand(projects[selectedIndex]);
 		}
 
 		// Deselect
 		else if (event.code === 'Escape') {
+			// No element has focus
 			if (document.activeElement === document.body) updateSelection(-1);
 			else event.target.blur(); // Deselect links
 		}

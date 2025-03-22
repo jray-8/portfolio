@@ -108,7 +108,7 @@ document.addEventListener('keydown', (event) => {
 });
 
 // Finished theme transition
-document.body.addEventListener('transitionend', (event) => {
+document.addEventListener('transitionend', (event) => {
 	if (event.propertyName === 'background-image') {
 		transitioning = false;
 	}

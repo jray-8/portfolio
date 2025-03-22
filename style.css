@@ -19,7 +19,7 @@ body {
 	color: #e7e7e7;
 	font-family: 'Segoe UI', sans-serif;
 	margin: 0;
-	transition: background-image 0.5s ease-in-out;
+	transition: background-image 0.4s ease-in-out;
 }
 
 #layout {
@@ -37,6 +37,13 @@ body {
 	width: 100%;
 	flex: 1; /* Grow as tall as necessary to fill vertical space */
 	text-align: center;
+}
+
+#projects-container {
+	width: 80%;
+	margin: auto;
+	max-width: 730px;
+	text-align: left;
 }
 
 /* Floating text box effect */
@@ -77,24 +84,22 @@ footer {
 	border-radius: 30px;
 }
 
-footer a {
-	color: rgb(124, 202, 216);
+/* General links */
+a {
+	color: rgb(139, 227, 243);
 	text-decoration: none;
 }
-
-footer a:hover {
+a:hover {
+	color: rgb(197, 176, 247);
 	text-decoration: underline;
 }
-
-footer a:active {
+a:active {
 	color: rgb(175, 156, 221);
 }
-
-#projects-container {
-	width: 80%;
-	margin: auto;
-	max-width: 730px;
-	text-align: left;
+:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
+	border-radius: 2px;
 }
 
 
@@ -131,6 +136,7 @@ footer a:active {
 	border-top: 2px solid rgba(255, 255, 255, 0.1);
 	padding: 20px;
 	padding-top: 5px;
+	will-change: transform;
 }
 
 .project-content p {

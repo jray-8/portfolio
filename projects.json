@@ -4,9 +4,9 @@
 		"description": "An amazing interactive site about XYZ.",
 		"type": "html",
 		"image": "assets/space.jpg",
+		"preview": "https://fonts.google.com/",
 		
 		"links": {
-			"d": "suckmydick.org",
 			"live": "https://yourgithubusername.github.io/project-folder",
 			"github": "https://github.com",
 			"download": "download!"
@@ -35,12 +35,7 @@
 							{
 								"name": "Mini Game",
 								"description": "A fun little game made in JS.",
-								"type": "html",
-								"links": {
-									"live": "https://yourgithubusername.github.io/project-folder/mini-game",
-									"github": "https://github.com/yourgithubusername/project-folder/tree/main/mini-game",
-									"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder/tree/main/mini-game"
-								}
+								"type": "html"
 							}
 						]
 					}
