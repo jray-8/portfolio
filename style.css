@@ -114,7 +114,7 @@ a:active {
 }
 
 .project.selected {
-	transform: scale(1.05);
+	/* transform: scale(1.05); */
 	box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 	outline: 1px solid rgba(255, 255, 255, 0.4);
 }
@@ -152,32 +152,39 @@ a:active {
 	margin-top: 15px;
 }
 
-.arrow {
-	margin-left: 15px;
-	transition: transform 0.3s;
-	will-change: transform;
-}
-
-.project.expanded > .project-header .arrow {
-	transform: rotate(90deg);
-}
-
 .project-icons {
 	display: flex;
 	align-items: center;
 	gap: 15px;
 }
 
-.project-icons a {
+.project-icons a, .arrow {
 	color: #e7e7e7;
 	font-size: 1.5rem;
 	text-decoration: none;
 	transition: transform 0.3s;
+	will-change: transform;
 }
 
-.project-icons a:hover {
+.project-icons a:hover, .arrow:hover {
 	transform: scale(1.2);
-	will-change: transform;
+}
+
+.project-icons a:active, .arrow:active {
+	color: #c2c2c2;
+}
+
+.arrow {
+	margin-left: 15px;
+	font-size: 1.3rem;
+}
+
+.project.expanded > .project-header .arrow {
+	transform: rotate(90deg);
+}
+
+.project.expanded > .project-header .arrow:hover {
+	transform: scale(1.2) rotate(90deg);
 }
 
 
@@ -197,7 +204,6 @@ a:active {
 }
 
 .subproject.selected {
-	/* transform: scale(1.05); */
 	background-color: var(--subproject-selected-bg);
 	border: 1px solid rgba(255, 255, 255, 0.4);
 }
@@ -208,6 +214,14 @@ a:active {
 	padding: 12px;
 }
 
+.subproject .project-icons {
+	gap: 12px;
+}
+
+.subproject .project-icons a {
+	font-size: 1.2rem;
+}
+
 .subproject .arrow {
 	font-size: 0.9rem;
 }
@@ -216,10 +230,6 @@ a:active {
 	transform: rotate(90deg);
 }
 
-.subproject .project-icons {
-	gap: 12px;
-}
-
-.subproject .project-icons a {
-	font-size: 1.2rem;
+.subproject.expanded > .project-header .arrow:hover {
+	transform: scale(1.2) rotate(90deg);
 }
