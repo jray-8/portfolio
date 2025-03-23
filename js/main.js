@@ -157,14 +157,15 @@ function setupExpandCollapse(projectEl, startExpanded = false) {
 	// Click anywhere on header *except non-arrow icons* to expand
 	header.addEventListener('click', (event) => {
 		if (event.target.closest('.arrow')) toggleExpand(projectEl);
-		else if (!event.target.closest('.project-icons')) toggleExpand(projectEl);
+		else if (!event.target.closest('.project-icons, a')) toggleExpand(projectEl);
 	});
 
 	// Enter key when the arrow icon is focused
 	arrow.addEventListener('keydown', (event) => {
+		if (keysPressed[event.code]) return; // Prevent spam
+
 		if (event.code === 'Enter') {
 			toggleExpand(projectEl);
-			event.stopPropagation(); // Ignore enter press for the `selectedIndex` project
 
 			// Select the expanded project
 			const index = projects?.indexOf(projectEl);
@@ -184,11 +185,8 @@ function setupMouseSelection() {
 
 /** Add document listener for selecting project on arrow keydown */
 function setupKeydownSelection() {
-	const keysPressed = {}; // Track held keys
-
 	document.addEventListener('keydown', (event) => {
 		if (keysPressed[event.code]) return; // Prevent spam
-		keysPressed[event.code] = true;
 
 		if (event.code === 'ArrowUp') {
 			let i = selectedIndex < 0 ? 0 : selectedIndex - 1;
@@ -222,10 +220,6 @@ function setupKeydownSelection() {
 			else event.target.blur(); // Deselect links
 		}
 	});
-
-	document.addEventListener('keyup', (event) => {
-		keysPressed[event.code] = false;
-	});
 }
 
 function setupCloneButton() {
@@ -235,6 +229,8 @@ function setupCloneButton() {
 	});
 
 	document.addEventListener('keydown', (event) => {
+		if (keysPressed[event.code]) return; // Prevent spam
+
 		if (event.code === 'Enter') {
 			const cloneIcon = event.target.closest('.clone-icon');
 			if (cloneIcon) copyToClipboard(cloneIcon);
@@ -275,6 +271,24 @@ function copyToClipboard(cloneIcon) {
 		.catch(err => console.error('Failed to copy text:', err));
 }
 
+/** Add an event listener to un-focus elements clicked with the mouse */
+function preventClickFocus() {
+	document.addEventListener('mouseup', () => document.activeElement.blur());
+}
+
+const keysPressed = {}; // Track held keys
+
+/** Prevent keydown spam by tracking which keys (code) are already pressed */
+function trackKeysPressed() {
+	document.addEventListener('keydown', (event) => {
+		keysPressed[event.code] = true;
+	});
+
+	document.addEventListener('keyup', (event) => {
+		keysPressed[event.code] = false;
+	});
+}
+
 /** 
  * - Add project selection by arrow keys or mouse hover 
  * - Detect click to clone icons
@@ -285,5 +299,7 @@ function setupNavigation() {
 	setupKeydownSelection();
 	setupMouseSelection();
 	setupCloneButton();
+	preventClickFocus();
+	trackKeysPressed();
 }
 // #endregion
