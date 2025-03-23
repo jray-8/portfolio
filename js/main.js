@@ -101,12 +101,19 @@ function generateIconLinks(links) {
 		'nbviewer': 'fal fa-chart-bar', 			// Host static Jupyter notebooks (through nbviewer)
 		'binder': 'fal fa-book', 					// Host interactive Jupyter notebooks (through Binder)
 		'download': 'fal fa-arrow-down-to-line', 	// Local download
-		'youtube': 'fab fa-youtube' 				// YouTube video demo
+		'youtube': 'fab fa-youtube', 				// YouTube video demo
+		'git-clone': 'fal fa-clone' 				// Copy git clone command
 	};
 
-	return Object.keys(links).map(key =>
-		`<a href="${links[key]}" target="_blank"><i class="${icons[key]}"></i></a>`
-	).join('\n');
+	return Object.keys(links).map(key => {
+		if (key === 'git-clone') {
+			return `<span class="clone-icon" data-text="${links[key]}" tabindex="0">
+						<i class="${icons[key]}"></i>
+					</span>`;
+		}
+		// Anchor tag
+		return `<a href="${links[key]}" target="_blank"><i class="${icons[key]}"></i></a>`;
+	}).join('\n');
 }
 
 
@@ -147,11 +154,10 @@ function setupExpandCollapse(projectEl, startExpanded = false) {
 		toggleExpand(projectEl);
 	}
 
-	// Click anywhere on header *except links* to expand
+	// Click anywhere on header *except non-arrow icons* to expand
 	header.addEventListener('click', (event) => {
-		if (!event.target.closest('a')) {
-			toggleExpand(projectEl);
-		}
+		if (event.target.closest('.arrow')) toggleExpand(projectEl);
+		else if (!event.target.closest('.project-icons')) toggleExpand(projectEl);
 	});
 
 	// Enter key when the arrow icon is focused
@@ -222,11 +228,62 @@ function setupKeydownSelection() {
 	});
 }
 
-/** Add project selection by arrow keys or mouse hover */
+function setupCloneButton() {
+	document.addEventListener('click', (event) => {
+		const cloneIcon = event.target.closest('.clone-icon');
+		if (cloneIcon) copyToClipboard(cloneIcon);
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.code === 'Enter') {
+			const cloneIcon = event.target.closest('.clone-icon');
+			if (cloneIcon) copyToClipboard(cloneIcon);
+		}
+	})
+}
+
+function copyToClipboard(cloneIcon) {
+	const repoUrl = cloneIcon.getAttribute('data-text');
+	if (!repoUrl) return console.error('Missing data-text attribute for clone command.');
+
+	const command = `git clone ${repoUrl}`;
+	navigator.clipboard.writeText(command)
+		.then(() => {
+			const icon = cloneIcon.querySelector('i');
+
+			// Store original properties
+			if (!cloneIcon._originalClass) {
+				cloneIcon._originalClass = icon.className;
+				cloneIcon._originalTitle = cloneIcon.getAttribute('title') || '';
+			}
+
+			// Indicate command was copied
+			icon.className = 'fal fa-check-circle';
+			cloneIcon.setAttribute('title', 'Copied!');
+			cloneIcon.style.color = 'limegreen';
+
+			// Clear previous timeout, and restart timer
+			clearTimeout(cloneIcon.timerID);
+
+			// Revert after delay
+			cloneIcon.timerID = setTimeout(() => {
+				icon.className = cloneIcon._originalClass;
+				cloneIcon.setAttribute('title', cloneIcon._originalTitle);
+				cloneIcon.style.color = ''; // Reset color
+			}, 1500);
+		})
+		.catch(err => console.error('Failed to copy text:', err));
+}
+
+/** 
+ * - Add project selection by arrow keys or mouse hover 
+ * - Detect click to clone icons
+*/
 function setupNavigation() {
 	// Get access to all projects in DOM (in depth-first order)
 	projects = Array.from(document.querySelectorAll('.project, .subproject'));
 	setupKeydownSelection();
 	setupMouseSelection();
+	setupCloneButton();
 }
 // #endregion

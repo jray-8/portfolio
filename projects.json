@@ -9,6 +9,7 @@
 		"links": {
 			"live": "https://yourgithubusername.github.io/project-folder",
 			"github": "https://github.com",
+			"git-clone": "Copy this text!",
 			"download": "download!"
 		},
 

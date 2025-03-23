@@ -158,7 +158,7 @@ a:active {
 	gap: 15px;
 }
 
-.project-icons a, .arrow {
+.project-icons :is(a, span, .arrow) {
 	color: #e7e7e7;
 	font-size: 1.5rem;
 	text-decoration: none;
@@ -166,11 +166,11 @@ a:active {
 	will-change: transform;
 }
 
-.project-icons a:hover, .arrow:hover {
+.project-icons :is(a, span, .arrow):hover {
 	transform: scale(1.2);
 }
 
-.project-icons a:active, .arrow:active {
+.project-icons :is(a, span, .arrow):active {
 	color: #c2c2c2;
 }
 
@@ -218,7 +218,7 @@ a:active {
 	gap: 12px;
 }
 
-.subproject .project-icons a {
+.subproject .project-icons :is(a, span) {
 	font-size: 1.2rem;
 }
 
