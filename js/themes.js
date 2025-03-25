@@ -92,8 +92,11 @@ function preloadThemeImages() {
 /** Transition background theme to the next one in order */
 function switchTheme(dir) {
 	if (transitioning) return;
-	transitioning = true;
-	themeIndex = (themeIndex + dir + themes.length) % themes.length;
+
+	// If the background was not yet set (using CSS default), do not increment index
+	if (document.body.style.backgroundImage) {
+		themeIndex = (themeIndex + dir + themes.length) % themes.length;
+	}
 	themes[themeIndex].apply();
 }
 
@@ -118,7 +121,13 @@ document.addEventListener('keydown', (event) => {
 	}
 });
 
-// Finished theme transition
+// Track theme transition start/end to prevent overlap
+document.addEventListener('transitionstart', (event) => {
+	if (event.propertyName === 'background-image') {
+		transitioning = true;
+	}
+});
+
 document.addEventListener('transitionend', (event) => {
 	if (event.propertyName === 'background-image') {
 		transitioning = false;
@@ -127,7 +136,7 @@ document.addEventListener('transitionend', (event) => {
 
 
 /** Choose and apply a random background theme */
-function randomizeTheme() {
+function chooseRandomTheme() {
 	themeIndex = Math.floor(Math.random() * themes.length);
 	themes[themeIndex].apply();
 }
@@ -145,5 +154,6 @@ function randomizeCycleOrder() {
 // Start each page load with a random theme
 document.addEventListener('DOMContentLoaded', () => {
 	preloadThemeImages();
-	randomizeTheme();
+	randomizeCycleOrder();
+	chooseRandomTheme();
 });
