@@ -43,7 +43,9 @@ function createProjectElement(spec, isSubproject = false) {
 		: `<span class="project-title">${spec.name}</span>`;
 
 	// Check for description
-	const description = spec.description ? `<p>${spec.description}</p>` : '';
+	const description = spec.description
+		? spec.description.split('\n').map(para => `<p>${para}</p>`).join('')
+		: '';
 
 	// Check for image
 	const imageContent = spec.image ? `<img src="${spec.image}" alt="${spec.name} image" class="project-image">` : '';
