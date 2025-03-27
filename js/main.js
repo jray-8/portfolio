@@ -39,8 +39,8 @@ function createProjectElement(spec, isSubproject = false) {
 	// Generate title
 	// Check if preview link exists
 	const titleContent = spec.preview
-		? `<a href="${spec.preview}" target="_blank" class="project-title">${spec.name}</a>`
-		: `<span class="project-title">${spec.name}</span>`;
+		? `<a href="${spec.preview}" target="_blank" title="Preview project">${spec.name}</a>`
+		: `<span>${spec.name}</span>`;
 
 	// Check for description
 	const description = spec.description
@@ -51,14 +51,18 @@ function createProjectElement(spec, isSubproject = false) {
 	const imageContent = spec.image ? `<img src="${spec.image}" alt="${spec.name} image" class="project-image">` : '';
 
 	// Generate icons
-	const icons = generateIconLinks(spec.links);
+	const links = generateIconLinks(spec.links);
+	const techStackIcons = generateTechStack(spec.techStack);
 
 	// Create the project structure
 	projectEl.innerHTML = `
 		<div class="project-header">
-			${titleContent}
+			<div class="project-title">
+				${techStackIcons}
+				${titleContent}
+			</div>
 			<div class="project-icons">
-				${icons}
+				${links}
 				<span class="arrow" tabindex="0"><i class="fas fa-chevron-right"></i></span>
 			</div>
 		</div>
@@ -98,24 +102,49 @@ function generateSubprojects(subprojects) {
 function generateIconLinks(links) {
 	if (!links) return '';
 	const icons = {
-		'live': 'fas fa-globe', 					// Website hosted on GitHub Pages
-		'github': 'fab fa-github', 					// Link to GitHub repo
-		'nbviewer': 'fal fa-chart-bar', 			// Host static Jupyter notebooks (through nbviewer)
-		'binder': 'fal fa-book', 					// Host interactive Jupyter notebooks (through Binder)
-		'download': 'fal fa-arrow-down-to-line', 	// Local download
-		'youtube': 'fab fa-youtube', 				// YouTube video demo
-		'git-clone': 'fal fa-clone' 				// Copy git clone command
+		'live': 		{ className: 'fas fa-globe', 				title: 'Website hosted on GitHub Pages' },
+		'github':		{ className: 'fab fa-github', 				title: 'Link to GitHub repo' },
+		'nbviewer': 	{ className: 'fal fa-chart-bar', 			title: 'Static Jupyter notebook (nbviewer)' },
+		'binder': 		{ className: 'fal fa-book', 				title: 'Interactive Jupyter notebook (Binder)' },
+		'download': 	{ className: 'fal fa-arrow-down-to-line', 	title: 'Local download (DownGit)' },
+		'youtube': 		{ className: 'fab fa-youtube', 				title: 'YouTube videw demo' },
+		'gitClone': 	{ className: 'fal fa-clone', 				title: 'Copy git clone command' }
 	};
 
 	return Object.keys(links).map(key => {
-		if (key === 'git-clone') {
+		const icon = icons[key];
+		if (!icon) return '';
+
+		const iconHTML = `<i class="${icon.className}" title="${icon.title}"></i>`;
+
+		if (key === 'gitClone') {
 			return `<span class="clone-icon" data-text="${links[key]}" tabindex="0">
-						<i class="${icons[key]}"></i>
+						${iconHTML}
 					</span>`;
 		}
-		// Anchor tag
-		return `<a href="${links[key]}" target="_blank"><i class="${icons[key]}"></i></a>`;
+		// Any links
+		return `<a href="${links[key]}" target="_blank">${iconHTML}</a>`;
 	}).join('\n');
+}
+
+function generateTechStack(techStack) {
+	if (!techStack) return '';
+	const icons = {
+		'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg',
+		'Jupyter': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original-wordmark.svg',
+		'JavaScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+		'HTML': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg'
+	};
+
+	return techStack
+		.map(tech => {
+			const iconUrl = icons[tech];
+			if (!iconUrl) return '';
+
+			const classAttr = ['Jupyter'].includes(tech) ? 'class="icon-backdrop"' : '';
+			return `<img src="${icons[tech]}" alt="${tech}" title="${tech}" ${classAttr}>`;
+		})
+		.join('\n');
 }
 
 
@@ -252,12 +281,12 @@ function copyToClipboard(cloneIcon) {
 			// Store original properties
 			if (!cloneIcon._originalClass) {
 				cloneIcon._originalClass = icon.className;
-				cloneIcon._originalTitle = cloneIcon.getAttribute('title') || '';
+				cloneIcon._originalTitle = icon.getAttribute('title') || '';
 			}
 
 			// Indicate command was copied
 			icon.className = 'fal fa-check-circle';
-			cloneIcon.setAttribute('title', 'Copied!');
+			icon.setAttribute('title', 'Copied!');
 			cloneIcon.style.color = 'limegreen';
 
 			// Clear previous timeout, and restart timer
@@ -266,7 +295,7 @@ function copyToClipboard(cloneIcon) {
 			// Revert after delay
 			cloneIcon.timerID = setTimeout(() => {
 				icon.className = cloneIcon._originalClass;
-				cloneIcon.setAttribute('title', cloneIcon._originalTitle);
+				icon.setAttribute('title', cloneIcon._originalTitle);
 				cloneIcon.style.color = ''; // Reset color
 			}, 1500);
 		})

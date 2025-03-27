@@ -2,14 +2,14 @@
 	{
 		"name": "My Cool HTML Project",
 		"description": "An amazing interactive site about XYZ.",
-		"type": "html",
+		"techStack": ["Python", "Jupyter"],
 		"image": "assets/space.jpg",
 		"preview": "https://fonts.google.com/",
 		
 		"links": {
 			"live": "https://yourgithubusername.github.io/project-folder",
 			"github": "https://github.com",
-			"git-clone": "Copy this text!",
+			"gitClone": "Copy this text!",
 			"download": "download!"
 		},
 
@@ -58,7 +58,7 @@
 	{
 		"name": "Data Analysis Notebook",
 		"description": "A Jupyter notebook exploring datasets.",
-		"type": "jupyter",
+		"techStack": ["Jupyter"],
 		"links": {
 			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
 			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
