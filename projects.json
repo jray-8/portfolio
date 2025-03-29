@@ -2,7 +2,7 @@
 	{
 		"name": "My Cool HTML Project",
 		"description": "An amazing interactive site about XYZ.",
-		"techStack": ["Python", "Jupyter"],
+		"techStack": ["python", "jupyter"],
 		"image": "assets/space.jpg",
 		"preview": "https://fonts.google.com/",
 		
@@ -58,7 +58,7 @@
 	{
 		"name": "Data Analysis Notebook",
 		"description": "A Jupyter notebook exploring datasets.",
-		"techStack": ["Jupyter"],
+		"techStack": ["jupyter"],
 		"links": {
 			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
 			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",

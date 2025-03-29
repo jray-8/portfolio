@@ -39,7 +39,7 @@ function createProjectElement(spec, isSubproject = false) {
 	// Generate title
 	// Check if preview link exists
 	const titleContent = spec.preview
-		? `<a href="${spec.preview}" target="_blank" title="Preview project">${spec.name}</a>`
+		? `<a href="${spec.preview}" target="_blank" class="tooltip" data-tooltip="Preview project">${spec.name}</a>`
 		: `<span>${spec.name}</span>`;
 
 	// Check for description
@@ -99,50 +99,69 @@ function generateSubprojects(subprojects) {
 	return subprojectsContainer;
 }
 
+/** Store icon types from Font Awesome */
+const linkIcons = {
+	'live': 		{ className: 'fas fa-globe', 				title: 'Website hosted on GitHub Pages' },
+	'github':		{ className: 'fab fa-github', 				title: 'Link to GitHub repo' },
+	'nbviewer': 	{ className: 'fal fa-chart-bar', 			title: 'Static Jupyter notebook (nbviewer)' },
+	'binder': 		{ className: 'fal fa-book', 				title: 'Interactive Jupyter notebook (Binder)' },
+	'download': 	{ className: 'fal fa-arrow-down-to-line', 	title: 'Local download (DownGit)' },
+	'youtube': 		{ className: 'fab fa-youtube', 				title: 'YouTube videw demo' },
+	'gitClone': 	{ className: 'fal fa-clone', 				title: 'Copy git clone command' }
+};
+
 function generateIconLinks(links) {
 	if (!links) return '';
-	const icons = {
-		'live': 		{ className: 'fas fa-globe', 				title: 'Website hosted on GitHub Pages' },
-		'github':		{ className: 'fab fa-github', 				title: 'Link to GitHub repo' },
-		'nbviewer': 	{ className: 'fal fa-chart-bar', 			title: 'Static Jupyter notebook (nbviewer)' },
-		'binder': 		{ className: 'fal fa-book', 				title: 'Interactive Jupyter notebook (Binder)' },
-		'download': 	{ className: 'fal fa-arrow-down-to-line', 	title: 'Local download (DownGit)' },
-		'youtube': 		{ className: 'fab fa-youtube', 				title: 'YouTube videw demo' },
-		'gitClone': 	{ className: 'fal fa-clone', 				title: 'Copy git clone command' }
-	};
 
 	return Object.keys(links).map(key => {
-		const icon = icons[key];
-		if (!icon) return '';
+		const icon = linkIcons[key];
+		if (!icon) { // Skip if icon not found
+			console.error(`Link icon key not found: ${key}`);
+			return '';
+		}
 
-		const iconHTML = `<i class="${icon.className}" title="${icon.title}"></i>`;
+		const iconHTML = `<i class="${icon.className}"></i>`;
 
 		if (key === 'gitClone') {
-			return `<span class="clone-icon" data-text="${links[key]}" tabindex="0">
+			return `<span class="clone-icon tooltip" data-tooltip="${icon.title}" data-text="${links[key]}" tabindex="0">
 						${iconHTML}
 					</span>`;
 		}
 		// Any links
-		return `<a href="${links[key]}" target="_blank">${iconHTML}</a>`;
+		return `<a href="${links[key]}" target="_blank" class="tooltip" data-tooltip="${icon.title}">${iconHTML}</a>`;
 	}).join('\n');
 }
 
+/** From https://devicon.dev */
+const devIcons = {
+	'python': 		{ src: 'python/python-original.svg', 				title: 'Python' },
+	'jupyter': 		{ src: 'jupyter/jupyter-original-wordmark.svg', 	title: 'Jupyter' },
+	'javascript': 	{ src: 'javascript/javascript-original.svg', 		title: 'JavaScript' },
+	'html': 		{ src: 'html5/html5-original.svg', 					title: 'HTML' },
+	'css': 			{ src: 'css3/css3-original.svg', 					title: 'CSS' },
+	'json': 		{ src: 'json/json-plain.svg', 						title: 'JSON' },
+	'c++': 			{ src: 'cplusplus/cplusplus-original.svg', 			title: 'C++' },
+	'c': 			{ src: 'c/c-original.svg', 							title: 'C Programming' },
+	'julia': 		{ src: 'julia/julia-original.svg', 					title: 'Julia' }
+};
+
+const withBackdrop = new Set(['jupyter']);
+
 function generateTechStack(techStack) {
 	if (!techStack) return '';
-	const icons = {
-		'Python': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg',
-		'Jupyter': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original-wordmark.svg',
-		'JavaScript': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
-		'HTML': 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg'
-	};
 
 	return techStack
 		.map(tech => {
-			const iconUrl = icons[tech];
-			if (!iconUrl) return '';
+			const icon = devIcons[tech];
+			if (!icon) { // Icon name not found
+				console.error(`Tech stack icon key not found: ${tech}`);
+				return '';
+			}
 
-			const classAttr = ['Jupyter'].includes(tech) ? 'class="icon-backdrop"' : '';
-			return `<img src="${icons[tech]}" alt="${tech}" title="${tech}" ${classAttr}>`;
+			const classAttr = withBackdrop.has(tech) ? 'icon-backdrop' : '';
+			return `<div class="${classAttr} tooltip" data-tooltip="${icon.title}">
+						<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${icon.src}" alt="${icon.title}">
+					</div>`;
 		})
 		.join('\n');
 }
@@ -281,12 +300,12 @@ function copyToClipboard(cloneIcon) {
 			// Store original properties
 			if (!cloneIcon._originalClass) {
 				cloneIcon._originalClass = icon.className;
-				cloneIcon._originalTitle = icon.getAttribute('title') || '';
+				cloneIcon._originalTitle = cloneIcon.getAttribute('data-tooltip') || '';
 			}
 
 			// Indicate command was copied
 			icon.className = 'fal fa-check-circle';
-			icon.setAttribute('title', 'Copied!');
+			cloneIcon.setAttribute('data-tooltip', 'Copied!');
 			cloneIcon.style.color = 'limegreen';
 
 			// Clear previous timeout, and restart timer
@@ -295,7 +314,7 @@ function copyToClipboard(cloneIcon) {
 			// Revert after delay
 			cloneIcon.timerID = setTimeout(() => {
 				icon.className = cloneIcon._originalClass;
-				icon.setAttribute('title', cloneIcon._originalTitle);
+				cloneIcon.setAttribute('data-tooltip', cloneIcon._originalTitle);
 				cloneIcon.style.color = ''; // Reset color
 			}, 1500);
 		})
