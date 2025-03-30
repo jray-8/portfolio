@@ -172,17 +172,33 @@ function generateTechStack(techStack) {
 let projects = null;
 let selectedIndex = -1; // Active project or subproject. (-1 marks no selection)
 
-/** Change the `.selected` project based on index */
+/** Bring selected project to center of scrollable region */
+function scrollIntoView() {
+	projects[selectedIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+/** Change the `.selected` project based on new index */
 function updateSelection(newIndex, scroll = false) {
 	if (!projects) return;
+
+	// Deselect old project if any
 	if (selectedIndex >= 0) {
-		projects[selectedIndex].classList.remove('selected');
+		const oldProject = projects[selectedIndex];
+		oldProject.classList.remove('selected');
+		oldProject.closest('.project')?.classList.remove('bigger');
 	}
+
+	// Update selected index
 	selectedIndex = newIndex ?? -1;
+
+	// Select new project if any
 	if (selectedIndex >= 0) {
-		projects[selectedIndex].classList.add('selected');
-		if (scroll) { // Move this project to the top of the scrollable region
-			projects[selectedIndex].scrollIntoView({ behavior: 'smooth', block: 'start' });
+		const newProject = projects[selectedIndex];
+		newProject.classList.add('selected');
+		newProject.closest('.project')?.classList.add('bigger');
+
+		if (scroll) { // Center project
+			scrollIntoView();
 		}
 	}
 }
@@ -233,34 +249,50 @@ function setupMouseSelection() {
 	});
 }
 
+/** Return the index of the first partially visible project in `projects` */
+function findClosestVisibleProject(reverse = false) {
+	const start = reverse ? projects.length - 1 : 0;
+	const end = reverse ? -1 : projects.length;
+	const step = reverse ? -1 : 1;
+
+	for (let i = start; i !== end; i += step) {
+		const rect = projects[i].getBoundingClientRect();
+		if (rect.top < window.innerHeight && rect.bottom > 0) {
+			return i; // First partially visible project in viewport
+		}
+	}
+	return -1; // None found
+};
+
 /** Add document listener for selecting project on arrow keydown */
 function setupKeydownSelection() {
 	document.addEventListener('keydown', (event) => {
 		if (keysPressed[event.code]) return; // Prevent spam
 
 		if (event.code === 'ArrowUp') {
-			let i = selectedIndex < 0 ? 0 : selectedIndex - 1;
+			let i = selectedIndex < 0 ? findClosestVisibleProject() : selectedIndex - 1;
 			while (i >= 0 && projects[i].offsetParent === null) {
 				--i; // Skip hidden projects
 			}
 			// Select project
 			if (i >= 0) updateSelection(i, true);
-			event.preventDefault();
 		}
 
 		else if (event.code === 'ArrowDown') {
-			let i = selectedIndex + 1;
-			while (i < projects.length && projects[i].offsetParent === null) {
+			let i = selectedIndex < 0 ? findClosestVisibleProject(true) : selectedIndex + 1;
+			while (i >= 0 && i < projects.length && projects[i].offsetParent === null) {
 				++i; // Skip hidden
 			}
 			if (i < projects.length) updateSelection(i, true);
-			event.preventDefault();
 		}
 
 		// Expand/collapse content
 		else if (event.code === 'Enter' && selectedIndex >= 0) {
 			// Only expand if no link or icon has focus
-			if (document.activeElement === document.body) toggleExpand(projects[selectedIndex]);
+			if (document.activeElement === document.body) { 
+				toggleExpand(projects[selectedIndex]);
+				scrollIntoView();
+			}
 		}
 
 		// Deselect
@@ -326,11 +358,14 @@ function preventClickFocus() {
 	document.addEventListener('mouseup', () => document.activeElement.blur());
 }
 
-const keysPressed = {}; // Track held keys
 
-/** Prevent keydown spam by tracking which keys (code) are already pressed */
-function trackKeysPressed() {
+const keysPressed = {}; // Track held keys
+const blockedKeys = new Set(['ArrowUp', 'ArrowDown']);
+
+/** Track key codes currently held & prevent default behaviors */
+function handleKeyTracking() {
 	document.addEventListener('keydown', (event) => {
+		if (blockedKeys.has(event.code)) event.preventDefault();
 		keysPressed[event.code] = true;
 	});
 
@@ -350,6 +385,6 @@ function setupNavigation() {
 	setupMouseSelection();
 	setupCloneButton();
 	preventClickFocus();
-	trackKeysPressed();
+	handleKeyTracking();
 }
 // #endregion
