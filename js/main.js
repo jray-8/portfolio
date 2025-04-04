@@ -8,27 +8,34 @@ document.addEventListener('DOMContentLoaded', function () {
 		});
 });
 
+/** Clear the `#projects-container` and insert an error message box */
 function showErrorMessage(message) {
-	const errorDiv = document.createElement('div');
-	errorDiv.classList.add('error-box');
 	const warningSign = '<i class="fas fa-triangle-exclamation"></i>';
-	errorDiv.innerHTML = `${warningSign} &nbsp;<span>${message}</span>&nbsp; ${warningSign}`;
-
+	const errorDiv = `<div class="error-box">
+						${warningSign} &nbsp;<span>${message}</span>&nbsp; ${warningSign}</i>
+					</div>`;
 	const container = document.getElementById('projects-container');
-	container.append(errorDiv);
+	container.innerHTML = errorDiv;
 }
 
 function displayProjects(projectSpecs) {
 	const container = document.getElementById('projects-container');
 
-	// Add projects to DOM
-	projectSpecs.forEach(spec => {
-		const projectEl = createProjectElement(spec);
-		container.appendChild(projectEl);
-	});
+	try {
+		// Add projects to DOM
+		projectSpecs.forEach(spec => {
+			const projectEl = createProjectElement(spec);
+			container.appendChild(projectEl);
+		});
+	}
+	catch (error) {
+		console.error('Error building projects:', error);
+		showErrorMessage('Failed to display projects. Please try again later.');
+	}
 
 	// Event listeners for selecting different projects
 	setupNavigation();
+	setupTooltips();
 }
 
 /** Recursively create and return a new project or subproject div */
@@ -58,8 +65,8 @@ function createProjectElement(spec, isSubproject = false) {
 	projectEl.innerHTML = `
 		<div class="project-header">
 			<div class="project-title">
-				${techStackIcons}
 				${titleContent}
+				${techStackIcons}
 			</div>
 			<div class="project-icons">
 				${links}
@@ -353,11 +360,6 @@ function copyToClipboard(cloneIcon) {
 		.catch(err => console.error('Failed to copy text:', err));
 }
 
-/** Add an event listener to un-focus elements clicked with the mouse */
-function preventClickFocus() {
-	document.addEventListener('mouseup', () => document.activeElement.blur());
-}
-
 
 const keysPressed = {}; // Track held keys
 const blockedKeys = new Set(['ArrowUp', 'ArrowDown']);
@@ -365,6 +367,7 @@ const blockedKeys = new Set(['ArrowUp', 'ArrowDown']);
 /** Track key codes currently held & prevent default behaviors */
 function handleKeyTracking() {
 	document.addEventListener('keydown', (event) => {
+		if (event.code === 'KeyR') console.log(document.activeElement);
 		if (blockedKeys.has(event.code)) event.preventDefault();
 		keysPressed[event.code] = true;
 	});
@@ -384,7 +387,33 @@ function setupNavigation() {
 	setupKeydownSelection();
 	setupMouseSelection();
 	setupCloneButton();
-	preventClickFocus();
 	handleKeyTracking();
+}
+
+/** Trigger `.tooltip` elements on hover or focus */
+function setupTooltips() {
+	const tooltips = document.querySelectorAll('.tooltip');
+
+	tooltips.forEach(tip => {
+		tip.addEventListener('mouseenter', activateTooltip);
+		tip.addEventListener('focus', activateTooltip);
+
+		// Mouseout and blur to remove active state
+		tip.addEventListener('mouseleave', deactivateTooltip);
+		tip.addEventListener('blur', deactivateTooltip);
+	});
+
+	function activateTooltip(event) {
+		clearActiveTooltips();
+		event.currentTarget.classList.add('active');
+	}
+
+	function deactivateTooltip(event) {
+		event.currentTarget.classList.remove('active');
+	}
+
+	function clearActiveTooltips() {
+		tooltips.forEach(tooltip => tooltip.classList.remove('active'));
+	}
 }
 // #endregion
