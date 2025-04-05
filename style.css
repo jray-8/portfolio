@@ -3,16 +3,17 @@ html {
 	color-scheme: dark;
 	
 	/* Global styles -- defaults */
-	--subproject-bg: rgba(255, 255, 255, 0.05);
-	--subproject-selected-bg: rgba(15, 15, 15, 0.4);
+	--subproject-bg: rgba(255, 255, 255, 0.1);
+	--subproject-selected-bg: rgba(31, 31, 31, 0.7);
 	--fine-white: #e7e7e7;
 }
 
 body {
-	background-color: #000a14; /* Default page color (when no image) */
+	background-color: #000a14; 	/* Default page color (darkmode default is #121212) */
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	background-size: cover; /* Scale to fit screen, cropping excess */
+	background-size: cover; 		/* Scale to fit screen, cropping excess */
+	background-position: center;
 
 	color: var(--fine-white);
 	font-family: 'Segoe UI', sans-serif;
@@ -46,10 +47,8 @@ body::before {
 }
 
 #projects-container {
-	width: 80%;
+	width: 732px;
 	margin: auto;
-	max-width: 730px; /* 852px */
-	min-width: 600px;
 }
 
 /* Floating text box effect */
@@ -181,7 +180,6 @@ a:active {
 	cursor: pointer;
 	user-select: none;
 	backface-visibility: hidden;
-	/* will-change: transform; */
 }
 
 .project-content {
@@ -189,7 +187,6 @@ a:active {
 	border-top: 2px solid rgba(255, 255, 255, 0.1);
 	padding: 20px;
 	padding-top: 5px;
-	/* will-change: transform; */
 }
 
 .project-content p {
@@ -245,7 +242,6 @@ a:active {
 	text-decoration: none;
 	transition: transform 0.3s;
 	backface-visibility: hidden;
-	/* will-change: transform; */
 }
 
 .project-icons :is(a, span, .arrow):hover {

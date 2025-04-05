@@ -367,7 +367,6 @@ const blockedKeys = new Set(['ArrowUp', 'ArrowDown']);
 /** Track key codes currently held & prevent default behaviors */
 function handleKeyTracking() {
 	document.addEventListener('keydown', (event) => {
-		if (event.code === 'KeyR') console.log(document.activeElement);
 		if (blockedKeys.has(event.code)) event.preventDefault();
 		keysPressed[event.code] = true;
 	});

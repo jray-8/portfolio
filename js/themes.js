@@ -6,9 +6,8 @@ const CLASSIC_BLUE = 	['rgba(36, 204, 255, 0.1)', 	'rgba(6, 27, 34, 0.7)'];
 const SUNSET_RED = 		['rgba(184, 111, 96, 0.1)', 	'rgba(41, 12, 7, 0.4)'];
 const SEA_GREEN = 		['rgba(18, 238, 220, 0.07)',	'rgba(1, 19, 18, 0.7)'];
 const ASH = 			['rgba(255, 255, 255, 0.1)',	'rgba(31, 31, 31, 0.7)'];
-const PYRAMID = 		['rgba(221, 193, 156, 0.25)',	'rgba(34, 29, 23, 0.7)'];
+const PYRAMID = 		['rgba(180, 157, 126, 0.25)',	'rgba(34, 29, 23, 0.7)'];
 const SHADOW = 			['rgba(255, 255, 255, 0.05)',	'rgba(15, 15, 15, 0.4)'];
-const PURPLE = 			['rgba(178, 121, 224, 0.2)',	'rgba(27, 18, 34, 0.7)'];
 const CASTLE_BROWN = 	['rgba(231, 164, 151, 0.1)',	'rgba(36, 24, 22, 0.7)'];
 const MAGENTA = 		['rgba(240, 143, 183, 0.1)',	'rgba(32, 18, 24, 0.7)'];
 const SLATE_BLUE = 		['rgba(53, 104, 121, 0.2)',	'rgba(10, 25, 31, 0.7)'];
@@ -20,7 +19,7 @@ class Theme {
 	constructor(bgUrl, subprojectColorSet) {
 		this.bgUrl = bgUrl; // Background image for the body
 		this.subprojectColor = subprojectColorSet[0];
-		this.selectedColor = subprojectColorSet[1];
+		this.selectedColor = subprojectColorSet[1] || '';
 	}
 
 	/** Apply this theme to the page */
@@ -41,38 +40,56 @@ class Theme {
 }
 
 const themes = [
+	new Theme('checkered-space.jpg', 	NIGHT_PURPLE),
 	new Theme('checkered-space-2.jpg', 	NIGHT_PURPLE),
-	new Theme('blue-checkered.jpg', 	DEEP_BLUE),
-	new Theme('spirit-2.jpg', 			CLASSIC_BLUE),
-	new Theme('pyramids-3.jpg', 		SUNSET_RED),
-	new Theme('bw-3.jpg', 				NIGHT_PURPLE),
-	new Theme('blue-space.jpg', 		SEA_GREEN),
-	new Theme('bw.jpg', 				ASH),
-	new Theme('pyramids.jpg', 			PYRAMID),
-	new Theme('bw-4.jpg', 				SHADOW),
-	new Theme('checkered-space.jpg', 	PURPLE),
-	new Theme('pyramids-2.jpg', 		PYRAMID),
-	new Theme('castle.jpg', 			SLATE_BLUE),
-	new Theme('castle-2.jpg', 			CASTLE_BROWN),
 	new Theme('checkered-space-3.jpg', 	MAGENTA),
+
+	new Theme('bw.jpg', 				ASH),
 	new Theme('bw-2.jpg', 				ASH),
-	new Theme('portal.jpg',				SLATE_BLUE),
-	new Theme('plains.jpg', 			CASTLE_BROWN),
-	new Theme('gates.jpg', 				SEA_GREEN),
+	new Theme('bw-3.jpg', 				NIGHT_PURPLE),
+	new Theme('bw-4.jpg', 				SHADOW),
+
+	new Theme('spirit.jpg', 			SPACE_GREEN),
+	new Theme('spirit-2.jpg', 			CLASSIC_BLUE),
+	
+	new Theme('space-py.jpg', 			PYRAMID),
+	new Theme('space-py-2.jpg', 		PYRAMID),
 	new Theme('red-py.jpg', 			MAGENTA),
-	new Theme('moon-desert.jpg', 		ASH),
-	new Theme('gates-3.jpg', 			PYRAMID),
-	new Theme('gates-5.jpg', 			SHADOW),
 	new Theme('blue-py.jpg', 			CLASSIC_BLUE),
 	new Theme('blue-py-2.jpg', 			SEA_GREEN),
+	new Theme('golden-py.jpg', 			SUNSET_RED),
+	
+	new Theme('castle.jpg', 			SLATE_BLUE),
+	new Theme('castle-2.jpg', 			CASTLE_BROWN),
+	new Theme('castle-3.jpg', 			SUNSET_RED),
+	new Theme('castle-4.jpg', 			MAGENTA),
+	new Theme('castle-5.jpg', 			SUNSET_RED),
+
+	new Theme('gates.jpg', 				SEA_GREEN),
+	new Theme('gates-2.jpg', 			NIGHT_PURPLE),
+	new Theme('gates-3.jpg', 			PYRAMID),
+	new Theme('gates-4.jpg', 			SHADOW),
+
+	new Theme('moon-desert.jpg', 		ASH),	
 	new Theme('moon-desert-2.jpg', 		ASH),
 	new Theme('moon-desert-3.jpg', 		ASH),
-	new Theme('golden-py.jpg', 			SUNSET_RED),
-	new Theme('gates-2.jpg', 			NIGHT_PURPLE),
-	new Theme('spirit.jpg', 			SPACE_GREEN),
-	new Theme('green-ice-2.jpg', 		SPACE_GREEN),
+	
 	new Theme('green-ice.jpg', 			SHADOW),
-	new Theme('glory.jpg', 				PYRAMID)
+	new Theme('green-ice-2.jpg', 		SPACE_GREEN),
+	new Theme('green-ice-3.jpg', 		SPACE_GREEN),
+
+	new Theme('portal.jpg',				SLATE_BLUE),
+	new Theme('plains.jpg', 			CASTLE_BROWN),
+	new Theme('blue-checkered.jpg', 	DEEP_BLUE),
+	new Theme('space-fog.jpg', 			DEEP_BLUE),
+	new Theme('glory.jpg', 				PYRAMID),
+
+	new Theme('fire-hawks.jpg', 		SLATE_BLUE),
+	new Theme('fire-hawks-2.jpg', 		SUNSET_RED),
+	new Theme('fire-hawks-3.jpg', 		PYRAMID),
+	new Theme('fire-hawks-4.jpg', 		CASTLE_BROWN),
+	new Theme('fire-hawks-5.jpg', 		SHADOW),
+	new Theme('fire-hawks-6.jpg', 		MAGENTA)
 ];
 
 let themeIndex = 0;
@@ -92,6 +109,7 @@ function preloadThemeImages() {
 /** Transition background theme to the next one in order */
 function switchTheme(dir) {
 	if (transitioning) return;
+	transitioning = true;
 
 	// If the background was not yet set (using CSS default), do not increment index
 	if (document.body.style.backgroundImage) {
@@ -112,6 +130,7 @@ document.addEventListener('wheel', (event) => {
 document.addEventListener('keydown', (event) => {
 	if (event.altKey) {
 		event.stopImmediatePropagation();
+		event.preventDefault();
 		if (event.code === 'ArrowUp' || event.code === 'ArrowLeft') {
 			switchTheme(-1);
 		}
@@ -121,19 +140,19 @@ document.addEventListener('keydown', (event) => {
 	}
 });
 
-// Track theme transition start/end to prevent overlap
-document.addEventListener('transitionstart', (event) => {
-	if (event.propertyName === 'background-image') {
-		transitioning = true;
-	}
-});
-
+// Track theme transition end to prevent overlap
 document.addEventListener('transitionend', (event) => {
 	if (event.propertyName === 'background-image') {
-		transitioning = false;
+		transitioning = false; // Unlock
 	}
 });
 
+
+/** Set theme based on the `name` of a background image (.ext included) */
+function chooseTheme(name) {
+	themeIndex = themes.findIndex(theme => theme.bgUrl === name);
+	themes[themeIndex].apply();
+}
 
 /** Choose and apply a random background theme */
 function chooseRandomTheme() {
