@@ -78,7 +78,7 @@ h1 {
 	margin: 0.67em auto;
 	margin-bottom: 50px;
 	
-	padding: 10px 40px 20px;
+	padding: 12px 40px 15px;
 	border-radius: 30px;
 	user-select: none;
 }
@@ -165,7 +165,7 @@ a:active {
 }
 
 .bigger {
-	transform: scale(1.05);
+	transform: scale(1.0622);
 }
 
 .project-header {
@@ -245,7 +245,7 @@ a:active {
 }
 
 .project-icons :is(a, span, .arrow):hover {
-	transform: scale(1.2);
+	transform: scale(1.22);
 }
 
 .project-icons :is(a, span, .arrow):active {
@@ -262,7 +262,7 @@ a:active {
 }
 
 .project.expanded > .project-header .arrow:hover {
-	transform: scale(1.2) rotate(90deg);
+	transform: scale(1.22) rotate(90deg);
 }
 
 
@@ -309,5 +309,5 @@ a:active {
 }
 
 .subproject.expanded > .project-header .arrow:hover {
-	transform: scale(1.2) rotate(90deg);
+	transform: scale(1.22) rotate(90deg);
 }
