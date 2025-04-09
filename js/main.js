@@ -110,11 +110,11 @@ function generateSubprojects(subprojects) {
 const linkIcons = {
 	'live': 		{ className: 'fas fa-globe', 				title: 'Website hosted on GitHub Pages' },
 	'github':		{ className: 'fab fa-github', 				title: 'Link to GitHub repo' },
+	'gitClone': 	{ className: 'fal fa-clone', 				title: 'Copy git clone command' },
 	'nbviewer': 	{ className: 'fal fa-chart-bar', 			title: 'Static Jupyter notebook (nbviewer)' },
 	'binder': 		{ className: 'fal fa-book', 				title: 'Interactive Jupyter notebook (Binder)' },
 	'download': 	{ className: 'fal fa-arrow-down-to-line', 	title: 'Local download (DownGit)' },
-	'youtube': 		{ className: 'fab fa-youtube', 				title: 'YouTube videw demo' },
-	'gitClone': 	{ className: 'fal fa-clone', 				title: 'Copy git clone command' }
+	'youtube': 		{ className: 'fab fa-youtube', 				title: 'YouTube videw demo' }
 };
 
 function generateIconLinks(links) {
@@ -143,7 +143,8 @@ function generateIconLinks(links) {
 const devIcons = {
 	'python': 		{ src: 'python/python-original.svg', 				title: 'Python' },
 	'jupyter': 		{ src: 'jupyter/jupyter-original-wordmark.svg', 	title: 'Jupyter' },
-	'javascript': 	{ src: 'javascript/javascript-original.svg', 		title: 'JavaScript' },
+	'latex': 		{ src: 'latex/latex-original.svg', 					title: 'LaTeX'},
+	'js': 			{ src: 'javascript/javascript-original.svg', 		title: 'JavaScript' },
 	'html': 		{ src: 'html5/html5-original.svg', 					title: 'HTML' },
 	'css': 			{ src: 'css3/css3-original.svg', 					title: 'CSS' },
 	'json': 		{ src: 'json/json-plain.svg', 						title: 'JSON' },
@@ -152,7 +153,7 @@ const devIcons = {
 	'julia': 		{ src: 'julia/julia-original.svg', 					title: 'Julia' }
 };
 
-const withBackdrop = new Set(['jupyter']);
+const withBackdrop = new Set(['jupyter', 'latex']);
 
 function generateTechStack(techStack) {
 	if (!techStack) return '';

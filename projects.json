@@ -2,7 +2,7 @@
 	{
 		"name": "My Cool HTML Project",
 		"description": "An amazing interactive site about XYZ.",
-		"techStack": ["python", "jupyter"],
+		"techStack": ["python", "latex"],
 		"image": "assets/space.jpg",
 		"preview": "https://fonts.google.com/",
 		
