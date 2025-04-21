@@ -189,12 +189,12 @@ a:active {
 	padding-top: 5px;
 }
 
-.project-content p {
+.project-content :is(p, ul) {
 	font-family: 'Quicksand', 'Segoe UI', sans-serif;
 	font-size: 1.1rem;
 	font-weight: 300;
 	line-height: 2;
-	margin-bottom: 9px;
+	margin: 0.5em;
 }
 
 .project-image {

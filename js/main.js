@@ -38,6 +38,43 @@ function displayProjects(projectSpecs) {
 	setupTooltips();
 }
 
+/** Generate the HTML for a project's description (from JSON file) 
+ * 
+ * - `\n` becomes a new paragraph `<p>`
+ * - `\n-` becomes a new bullet in an `<ul>`
+*/
+function descriptionToHTML(raw) {
+	if (!raw) return '';
+
+	const lines = raw.split('\n');
+	let html = '';
+	let inList = false;
+
+	for (let i=0; i < lines.length; ++i) {
+		const line = lines[i].trim();
+
+		if (line.startsWith('-')) { // Bullet
+			// Start new list
+			if (!inList) {
+				html += '<ul>';
+				inList = true;
+			}
+			html += `<li>${line.slice(1).trim()}</li>`;
+		}
+		else { // Paragraph
+			// End current list
+			if (inList) {
+				html += '</ul>';
+				inList = false;
+			}
+			if (line) html += `<p>${line}</p>`;
+		}
+	}
+	// Ends with list
+	if (inList) html += '</ul>';
+	return html;
+}
+
 /** Recursively create and return a new project or subproject div */
 function createProjectElement(spec, isSubproject = false) {
 	const projectEl = document.createElement('div');
@@ -45,48 +82,57 @@ function createProjectElement(spec, isSubproject = false) {
 
 	// Generate title
 	// Check if preview link exists
-	const titleContent = spec.preview
+	const titleHTML = spec.preview
 		? `<a href="${spec.preview}" target="_blank" class="tooltip" data-tooltip="Preview project">${spec.name}</a>`
 		: `<span>${spec.name}</span>`;
 
 	// Check for description
-	const description = spec.description
-		? spec.description.split('\n').map(para => `<p>${para}</p>`).join('')
-		: '';
+	const description = descriptionToHTML(spec.description);
 
 	// Check for image
-	const imageContent = spec.image ? `<img src="${spec.image}" alt="${spec.name} image" class="project-image">` : '';
+	const imageHTML = spec.image ? `<img src="${spec.image}" alt="${spec.name} image" class="project-image">` : '';
 
 	// Generate icons
 	const links = generateIconLinks(spec.links);
 	const techStackIcons = generateTechStack(spec.techStack);
 
+	// Group content
+	const hasContent = spec.description || spec.image;
+	
+	const contentHTML = hasContent  
+		? `<div class="project-content">
+				${description}
+				${imageHTML}
+			</div>`
+		: '';
+
 	// Create the project structure
 	projectEl.innerHTML = `
 		<div class="project-header">
 			<div class="project-title">
-				${titleContent}
+				${titleHTML}
 				${techStackIcons}
 			</div>
 			<div class="project-icons">
 				${links}
-				<span class="arrow" tabindex="0"><i class="fas fa-chevron-right"></i></span>
+				${hasContent ? '<span class="arrow" tabindex="0"><i class="fas fa-chevron-right"></i></span>' : ''}
 			</div>
 		</div>
-		<div class="project-content">
-			${description}
-			${imageContent}
-		</div>
+		${contentHTML}
 	`;
 
 	// Attach event listeners
-	setupExpandCollapse(projectEl, spec.expanded);
+	if (hasContent) {
+		setupExpandCollapse(projectEl, spec.expanded);
+	}
 
 	// Generate subproject elements
 	if (spec.subprojects && spec.subprojects.length > 0) {
-		const subprojects = generateSubprojects(spec.subprojects); // Div container
 		const content = projectEl.querySelector('.project-content');
-		content.appendChild(subprojects);
+		if (content) {
+			const subprojects = generateSubprojects(spec.subprojects); // Div container
+			content.appendChild(subprojects);
+		}
 	}
 
 	return projectEl;
@@ -213,8 +259,10 @@ function updateSelection(newIndex, scroll = false) {
 
 /** Show or hide content region */
 function toggleExpand(projectEl) {
-	const isExpanded = projectEl.classList.toggle('expanded');
 	const content = projectEl.querySelector('.project-content');
+	if (!content) return;
+
+	const isExpanded = projectEl.classList.toggle('expanded');
 	content.style.display = isExpanded ? 'block' : 'none';
 }
 

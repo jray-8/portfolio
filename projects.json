@@ -1,7 +1,7 @@
 [
 	{
 		"name": "My Cool HTML Project",
-		"description": "An amazing interactive site about XYZ.",
+		"description": "An amazing interactive site about XYZ. \n-X: is ex \nY is why \n-Z is zee\nSHiiit",
 		"techStack": ["python", "latex"],
 		"image": "assets/space.jpg",
 		"preview": "https://fonts.google.com/",
@@ -57,7 +57,6 @@
 
 	{
 		"name": "Data Analysis Notebook",
-		"description": "A Jupyter notebook exploring datasets.",
 		"techStack": ["jupyter"],
 		"links": {
 			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
@@ -69,7 +68,7 @@
 
 	{
 		"name": "Data Analysis Notebook",
-		"description": "A Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nM Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets. <br>More lines <br>More lines <br>More lines~!",
+		"description": "A Jupyter notebook exploring datasets.",
 		"expanded": true,
 		"links": {
 			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
