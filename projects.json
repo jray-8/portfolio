@@ -1,152 +1,154 @@
 [
-	{
-		"name": "My Cool HTML Project",
-		"description": "An amazing interactive site about XYZ. \n-X: is ex \nY is why \n-Z is zee\nSHiiit",
-		"techStack": ["python", "latex"],
-		"image": "assets/space.jpg",
-		"preview": "https://fonts.google.com/",
-		
+	{	"name": "Jeffrey's Portfolio",
+		"description": "Welcome!\nClick the icon links for access to GitHub repos, project previews, and notebooks.",
+		"expanded": true,
 		"links": {
-			"live": "https://yourgithubusername.github.io/project-folder",
-			"github": "https://github.com",
-			"gitClone": "Copy this text!",
-			"download": "download!"
+			"github": "https://github.com/jray-8/portfolio/blob/main/README.md"
+		}
+	},
+
+	{	"name": "Combinatorics",
+		"expanded": true,
+		"links": {
+			"github": "https://github.com/jray-8/combinatorics/blob/main/formulas.ipynb"
 		},
 
 		"subprojects": [
 			{
-				"name": "Mini Game",
-				"expanded": true,
+			"name": "Poker Hands",
+				"description": 
+				"Analyze the number of ways to draw each poker hand, the probability of its draw, and the odds against drawing it.\nExplained from the ground up using LaTeX.",
 				"links": {
-					"live": "https://yourgithubusername.github.io/project-folder/mini-game",
-					"github": "https://github.com/yourgithubusername/project-folder/tree/main/mini-game",
-					"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder/tree/main/mini-game"
-				},
-				"subprojects": [
-					{
-						"name": "Mini Game",
-						"description": "A fun little game made in JS.",
-						"type": "html",
-						"links": {
-							"live": "https://yourgithubusername.github.io/project-folder/mini-game",
-							"github": "https://github.com/yourgithubusername/project-folder/tree/main/mini-game",
-							"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder/tree/main/mini-game"
-						},
-						"subprojects": [
-							{
-								"name": "Mini Game",
-								"description": "A fun little game made in JS.",
-								"type": "html"
-							}
-						]
-					}
-				]
+					"nbviewer": "https://nbviewer.org/github/jray-8/combinatorics/blob/main/poker/poker_hands.ipynb"
+				}
 			},
+
 			{
-				"name": "Another Game",
-				"description": "A fun little game made in JS.",
-				"type": "html",
+				"name": "Advanced Poker Hands",
+				"description": "Here, we investigate: \n- The expected number of draws until scoring a certain hand, using the geometric distribution \n- Balancing prize systems to match the rarity of each hand\n- The probability of drawing hands under specific situations (given to us from a simulated game)\nFeatures plots, visuals, and sample code.",
 				"links": {
-					"live": "https://yourgithubusername.github.io/project-folder/mini-game",
-					"github": "https://github.com/yourgithubusername/project-folder/tree/main/mini-game",
-					"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder/tree/main/mini-game"
+					"nbviewer": "https://nbviewer.org/github/jray-8/combinatorics/blob/main/poker/poker_hands_2.ipynb"
 				}
 			}
 		]
 	},
 
-	{
-		"name": "Data Analysis Notebook",
-		"techStack": ["jupyter"],
+	{	"name": "Genetic Algorithms",
+		"description": "A series of educational demos posing problems that may be solved efficiently with genetic algorithms. Powered by a custom-built package (pyvolver) for quickly adapting a genetic solution to any optimization or combinatorial problem.\n- Explains the relationship between computer algorithms and the biological processes that inspired them\n- Solves original problems in a fun and interactive style\n- Features a visualizer to observe the balance between exploration and exploitation in real time",
+		"expanded": true,
+		"preview": "https://jray-8.github.io/genetic-algorithms/visualizer/index.html",
 		"links": {
-			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
-			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
-			"github": "https://github.com/yourgithubusername/project-folder",
-			"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder"
+			"gitClone": "https://github.com/jray-8/genetic-algorithms.git",
+			"github": "https://github.com/jray-8/genetic-algorithms/blob/main/README.md"
+		},
+
+		"subprojects": [
+			{
+				"name": "Pyvolver Package",
+				"links": {
+					"github": "https://github.com/jray-8/genetic-algorithms/blob/main/pyvolver/README.md"
+				}
+			},
+			{
+				"name": "Sum To N",
+				"links": {
+					"nbviewer": "https://nbviewer.org/github/jray-8/genetic-algorithms/blob/main/sum_to_n.ipynb"
+				}
+			},
+			{
+				"name": "Avoid The Plague",
+				"links": {
+					"nbviewer": "https://nbviewer.org/github/jray-8/genetic-algorithms/blob/main/sum_to_n.ipynb"
+				}
+			},
+			{
+				"name": "Global Maximum (Optimization)",
+				"links": {
+					"nbviewer": "https://nbviewer.org/github/jray-8/genetic-algorithms/blob/main/sum_to_n.ipynb"
+				}
+			},
+			{
+				"name": "Asymmetric Travelling Salesman Problem (ATSP)",
+				"links": {
+					"nbviewer": "https://nbviewer.org/github/jray-8/genetic-algorithms/blob/main/sum_to_n.ipynb"
+				}
+			},
+			{
+				"name": "Sum To M & N",
+				"links": {
+					"nbviewer": "https://nbviewer.org/github/jray-8/genetic-algorithms/blob/main/sum_to_n.ipynb"
+				}
+			}
+		]
+	},
+
+	{	"name": "Boids",
+		"description": "A fun and interactive version of boids which incorporates 5 unique flock types, each with their own personality and behavior.\n- Take control of a flock with anchor points\n- Dynamically change flock settings and observe their physical changes\n- Let boids avoid other flocks or disable collisions\n- Isolate flocks for a personal view, or let them all fly together in chaos!",
+		"preview": "https://jray-8.github.io/boids/",
+		"links": {
+			"gitClone": "https://github.com/jray-8/boids.git",
+			"github": "https://github.com/jray-8/boids/blob/main/README.md"
 		}
 	},
 
-	{
-		"name": "Data Analysis Notebook",
-		"description": "A Jupyter notebook exploring datasets.",
-		"expanded": true,
+	{	"name": "The Mandelbrot Set",
+		"description": "Explore an alien landscape hidden within the complex plane, where intricate fractals and mesmerizing geometric patterns emerge endlessly as you zoom deeper into infinity!\n- Enhanced with data parallelism and low-level optimizations to unlock deeper zoom levels and smoother performance",
+		"preview": "https://jray-8.github.io/mandelbrot/",
 		"links": {
-			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
-			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
-			"github": "https://github.com/yourgithubusername/project-folder",
-			"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder"
+			"gitClone": "https://github.com/jray-8/mandelbrot.git",
+			"github": "https://github.com/jray-8/mandelbrot/blob/main/README.md"
 		}
 	},
 
-	{
-		"name": "Data Analysis Notebook",
-		"description": "A Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nM Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets. <br>More lines <br>More lines <br>More lines~!",
+	{	"name": "Cellular Automata",
 		"expanded": true,
+
+		"subprojects": [
+			{
+				"name": "Conway's Game of Life",
+				"description": "Watch life evolve and patterns emerge as cells live, die, and grow! This classic cellular automaton showcases how surprisingly complex behavior can arise from a few simple rules.\n- Design your own patterns or test presets to see how they evolve\n- Clean visual grid and intuitive interface for exploring emergent behavior\n- Control the grid size and rate of growth",
+				"preview": "https://jray-8.github.io/game-of-life/",
+				"links": {
+					"gitClone": "https://github.com/jray-8/game-of-life.git",
+					"github": "https://github.com/jray-8/game-of-life/blob/main/README.md"
+				}
+			},
+			{	
+				"name": "Duel-Life",
+				"description": "A war-themed stochastic cellular automaton where two camps fight over mountains and build barricades to seize territory. Will The Allies or Axis Powers control the map? Governed by chance, every tick is a new battle! \n-The more nearby camps a team controls, the more likely they are to win over the cell \n- Dynamically colored to visually represent a team's advantage \n- Control the rate of war and paint the terrain for interesting battles",
+				"preview": "https://jray-8.github.io/duel-life/",
+				"links": {
+					"gitClone": "https://github.com/jray-8/duel-life.git",
+					"github": "https://github.com/jray-8/duel-life/blob/main/README.md"
+				}
+			}
+		]
+	},
+
+	{	"name": "Image Processing Toolbox",
+		"description": "An advanced REPL-based image editing suite built with Pillow, packed with both classic editing tools and mind-bending psychedelic transformations! This tool allows you to tweak, resize, clean artifacts, distort, and creatively manipulate images with instant previews and intuitive prompts.\n- Provides fundamental tools for cropping, padding, and resizing\n- Explore custom convolution kernels and point-based transformations\n- Experiment with color and contrast adjustments, pixel sorting and wave warps\n- Apply original glitch-art transformations like Glitch Sort and Color Split to craft surreal photos",
 		"links": {
-			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
-			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
-			"github": "https://github.com/yourgithubusername/project-folder",
-			"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder"
+			"download": "https://downgit.github.io/#/home?url=https://github.com/jray-8/image-toolbox",
+			"gitClone": "https://github.com/jray-8/image-toolbox.git",
+			"github": "https://github.com/jray-8/image-toolbox/blob/main/README.md"
 		}
 	},
 
-	{
-		"name": "Data Analysis Notebook",
-		"description": "A Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nM Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets. <br>More lines <br>More lines <br>More lines~!",
-		"expanded": true,
+	{	"name": "Maze Generator",
+		"description": "A graphical maze generator built with Pygame, offering a hand-crafted UI, smooth navigation, and tons of personalization options. Explore, solve, and even export your own mazes with this user-friendly tool!\n- Generate intricate mazes instantly with a single keypress\n- Pan, scroll, or zoom to navigate the walls\n- Solve the maze yourself with an in-game player and claim your reward 👑\n- Customize everything—colors, themes, borders, maze dimensions, and more\n- Save mazes as printable images for offline fun",
 		"links": {
-			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
-			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
-			"github": "https://github.com/yourgithubusername/project-folder",
-			"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder"
+			"download": "https://downgit.github.io/#/home?url=https://github.com/jray-8/maze-generator",
+			"gitClone": "https://github.com/jray-8/maze-generator.git",
+			"github": "https://github.com/jray-8/maze-generator/blob/main/README.md"
 		}
 	},
 
-	{
-		"name": "Data Analysis Notebook",
-		"description": "A Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nM Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets. <br>More lines <br>More lines <br>More lines~!",
-		"expanded": true,
+	{	"name": "Simple Server",
+		"description": "A deceptively simple online chatroom and file-sharing server, powered by a custom terminal UI built on ncurses and a lightweight dual-socket protocol for real-time communication.\n- Real-time chat between authenticated users with graceful recovery from connection issues\n- Built-in file sharing requests and binary prompt handling\n- Dual-socket architecture separates messaging and command input for advanced interactions\n- Supports both LAN and remote connections (with preconfigured port forwarding)\nBuilt for stability, speed, and a little bit of terminal magic 🧙‍♂️.",
 		"links": {
-			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
-			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
-			"github": "https://github.com/yourgithubusername/project-folder",
-			"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder"
-		}
-	},
-
-	{
-		"name": "Data Analysis Notebook",
-		"description": "A Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nM Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets. <br>More lines <br>More lines <br>More lines~!",
-		"expanded": true,
-		"links": {
-			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
-			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
-			"github": "https://github.com/yourgithubusername/project-folder",
-			"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder"
-		}
-	},
-
-	{
-		"name": "Data Analysis Notebook",
-		"description": "A Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nM Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets. <br>More lines <br>More lines <br>More lines~!",
-		"expanded": true,
-		"links": {
-			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
-			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
-			"github": "https://github.com/yourgithubusername/project-folder",
-			"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder"
-		}
-	},
-
-	{
-		"name": "Data Analysis Notebook",
-		"description": "A Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nN Jupyter notebook exploring datasets.\nM Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets.A Jupyter notebook exploring datasets. <br>More lines <br>More lines <br>More lines~!",
-		"expanded": true,
-		"links": {
-			"nbviewer": "https://nbviewer.org/github/yourgithubusername/project-folder/blob/main/notebook.ipynb",
-			"binder": "https://mybinder.org/v2/gh/yourgithubusername/project-folder/HEAD?filepath=notebook.ipynb",
-			"github": "https://github.com/yourgithubusername/project-folder",
-			"download": "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/yourgithubusername/project-folder"
+			"download": "https://downgit.github.io/#/home?url=https://github.com/jray-8/simple-server",
+			"gitClone": "https://github.com/jray-8/simple-server.git",
+			"github": "https://github.com/jray-8/simple-server/blob/main/README.md"
 		}
 	}
 ]
