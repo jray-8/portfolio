@@ -1,3 +1,16 @@
+const projectOrder = [
+	'Jeffrey\'s Portfolio',	
+	'Boids',
+	'The Mandelbrot Set',
+	'Cellular Automata',
+	'Combinatorics',
+	'Genetic Algorithms',
+	'Image Processing Toolbox',
+	'Maze Generator',
+	'Simple Server',
+];
+
+// Read JSON
 document.addEventListener('DOMContentLoaded', function () {
 	fetch('projects.json')
 		.then(response => response.json())
@@ -7,6 +20,24 @@ document.addEventListener('DOMContentLoaded', function () {
 			showErrorMessage('Failed to load projects. Please check your connection.');
 		});
 });
+
+
+/** Sort the surface-level projects (in-place) based on `projectOrder` */
+function orderProjectSpecs(projectSpecs) {
+	// Allow for some inconsistency in names
+	normalize = (str) => str.toLowerCase().replace(/[^a-z]/g, '');
+
+	const orderMap = new Map();
+	projectOrder.forEach((name, index) => {
+		orderMap.set(normalize(name), index); // normalized-name -> order-index
+	});
+
+	projectSpecs.sort((a, b) => {
+		const indexA = orderMap.get(normalize(a.name)) ?? 999;
+		const indexB = orderMap.get(normalize(b.name)) ?? 999;
+		return indexA - indexB;
+	});
+}
 
 /** Clear the `#projects-container` and insert an error message box */
 function showErrorMessage(message) {
@@ -20,6 +51,9 @@ function showErrorMessage(message) {
 
 function displayProjects(projectSpecs) {
 	const container = document.getElementById('projects-container');
+	container.innerHTML = '';
+
+	orderProjectSpecs(projectSpecs);
 
 	try {
 		// Add projects to DOM
@@ -42,6 +76,7 @@ function displayProjects(projectSpecs) {
  * 
  * - `\n` becomes a new paragraph `<p>`
  * - `\n-` becomes a new bullet in an `<ul>`
+ * - Supports markdown for `**bold**` and `_italic_` text
 */
 function descriptionToHTML(raw) {
 	if (!raw) return '';
@@ -49,6 +84,13 @@ function descriptionToHTML(raw) {
 	const lines = raw.split('\n');
 	let html = '';
 	let inList = false;
+
+	// Perform markdown replacements
+	raw = raw
+		.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')	// Bold with **
+		.replace(/__(.+?)__/g, '<strong>$1</strong>')		// Bold with __
+		.replace(/\*(.+?)\*/g, '<em>$1</em>')				// Italic with *
+		.replace(/_(.+?)_/g, '<em>$1</em>')					// Italic with _
 
 	for (let i=0; i < lines.length; ++i) {
 		const line = lines[i].trim();
@@ -97,9 +139,9 @@ function createProjectElement(spec, isSubproject = false) {
 	const techStackIcons = generateTechStack(spec.techStack);
 
 	// Group content
-	const hasContent = spec.description || spec.image;
+	const hasContent = spec.description || spec.image || spec.subprojects;
 	
-	const contentHTML = hasContent  
+	const contentHTML = hasContent 
 		? `<div class="project-content">
 				${description}
 				${imageHTML}
