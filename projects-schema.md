@@ -8,7 +8,7 @@ This file outlines the structure of the `projects.json` file used for displaying
     {
 		"id": 1,
 		"name": "Project 1",
-		"description": "A short description of Project 1",
+		"description": "A short description of Project 1\n- bullet point",
 		"techStack": ["html", "js", "css"],
 		"links": 
 		{
@@ -34,12 +34,15 @@ The root of the JSON file is an __array__ of __project objects__, each following
 - `name` (Required): The name of the project.
 
 - `description`: A short description of the project.
+	- Use `\n` to mark new paragraphs
+	- And `\n-` for bullet points
+	- Also supports markdown-styled `**bold**` and `_italic_` text
 
 - `techStack`: An array of _lowercase_ strings representing tools used in the project.
 	- Possible values:  
-	`python`, `jupyter`, `latex`, `js`,  
-	`html`, `css`, `c`, `c++`, `julia`
-
+	
+		`python`, `jupyter`, `latex`, `js`,  
+		`html`, `css`, `c`, `c++`, `julia`
 
 - `image`: A URL or path to an image representing the project.
 
