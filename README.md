@@ -13,7 +13,7 @@ This repository contains a collection of interactive projects to showcase my ski
 
 ## Usage
 
-Visit the [portfolio site](#coming-soon) hosted on GitHub Pages!
+Visit the [portfolio site](https://jray-8.github.io/portfolio/) hosted on GitHub Pages!
 
 Or, clone the repository and open the `index.html` file in your browser to explore the projects locally.
 
@@ -24,12 +24,18 @@ Use the mouse or `arrow keys` + `Enter` to expand and view projects, or subproje
 Each project includes a set of icon links for quick actions, such as:
 
 - Previewing the project on a live site
+
 - Viewing its GitHub repository
+
 - Copying a `git clone` command
+
 - Launching a Jupyter notebook (via [Binder](https://mybinder.org/) or [nbviewer](https://nbviewer.org/))
+
 - Downloading project files using [DownGit](https://downgit.github.io/#/home)
 
-You may also see dev icons showing which software tools or languages were used to build the project.
+Links may also be clicked with `Tab` + `Enter`, and deselected with `Esc`.
+
+Dev icons beside a project's title show which software tools or languages were used to build the project.
 
 Hover over any icon to learn more.
 
