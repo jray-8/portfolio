@@ -453,7 +453,7 @@ function copyToClipboard(cloneIcon) {
 
 
 const keysPressed = {}; // Track held keys
-const blockedKeys = new Set(['ArrowUp', 'ArrowDown']);
+const blockedKeys = new Set(['ArrowUp', 'ArrowDown']); // Prevent default behavior
 
 /** Track key codes currently held & prevent default behaviors */
 function handleKeyTracking() {
@@ -478,6 +478,13 @@ function setupNavigation() {
 	setupMouseSelection();
 	setupCloneButton();
 	handleKeyTracking();
+
+	// Icons lose focus on click, except `clone-icon`
+	document.addEventListener('click', (event) => {
+		const inCloneIcon = event.target.closest('.clone-icon');
+		if (inCloneIcon) return;
+		document.activeElement.blur();
+	});
 }
 
 /** Trigger `.tooltip` elements on hover or focus */
@@ -488,7 +495,7 @@ function setupTooltips() {
 		tip.addEventListener('mouseenter', activateTooltip);
 		tip.addEventListener('focus', activateTooltip);
 
-		// Mouseout and blur to remove active state
+		// Mouse out and blur to remove active state
 		tip.addEventListener('mouseleave', deactivateTooltip);
 		tip.addEventListener('blur', deactivateTooltip);
 	});
