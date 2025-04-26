@@ -33,18 +33,22 @@ The root of the JSON file is an __array__ of __project objects__, each following
 
 - `name` (Required): The name of the project.
 
+- `expanded` (boolean): If the project starts expanded (showing description + image).
+
+- `techStack`: An array of __lowercase__ strings representing tools used in the project.
+	- Possible values:  
+	
+		`python`, `jupyter`, `latex`, `js`,  
+		`html`, `css`, `c`, `c++`, `julia`,  
+		`numpy`, `pandas`, `matplotlib`, `plotly`,  
+		`scikit-learn`, `pytorch`
+
+- `image`: A URL or path to an image representing the project.
+
 - `description`: A short description of the project.
 	- Use `\n` to mark new paragraphs
 	- And `\n-` for bullet points
 	- Also supports markdown-styled `**bold**` and `_italic_` text
-
-- `techStack`: An array of _lowercase_ strings representing tools used in the project.
-	- Possible values:  
-	
-		`python`, `jupyter`, `latex`, `js`,  
-		`html`, `css`, `c`, `c++`, `julia`
-
-- `image`: A URL or path to an image representing the project.
 
 - `preview`: A URL to preview the project.
 
