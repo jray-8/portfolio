@@ -165,7 +165,7 @@ a:active {
 }
 
 .bigger {
-	transform: scale(1.0622);
+	transform: scale(1.057422);
 }
 
 .project-header {
@@ -245,7 +245,7 @@ a:active {
 }
 
 .project-icons :is(a, span, .arrow):hover {
-	transform: scale(1.22);
+	transform: scale(1.2);
 }
 
 .project-icons :is(a, span, .arrow):active {
@@ -262,7 +262,7 @@ a:active {
 }
 
 .project.expanded > .project-header .arrow:hover {
-	transform: scale(1.22) rotate(90deg);
+	transform: scale(1.2) rotate(90deg);
 }
 
 
@@ -297,7 +297,7 @@ a:active {
 }
 
 .subproject .project-icons :is(a, span) {
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 }
 
 .subproject .arrow {
@@ -309,5 +309,5 @@ a:active {
 }
 
 .subproject.expanded > .project-header .arrow:hover {
-	transform: scale(1.22) rotate(90deg);
+	transform: scale(1.2) rotate(90deg);
 }
