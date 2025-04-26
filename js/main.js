@@ -238,7 +238,13 @@ const devIcons = {
 	'json': 		{ src: 'json/json-plain.svg', 						title: 'JSON' },
 	'c++': 			{ src: 'cplusplus/cplusplus-original.svg', 			title: 'C++' },
 	'c': 			{ src: 'c/c-original.svg', 							title: 'C Programming' },
-	'julia': 		{ src: 'julia/julia-original.svg', 					title: 'Julia' }
+	'julia': 		{ src: 'julia/julia-original.svg', 					title: 'Julia' },
+	'numpy': 		{ src: 'numpy/numpy-original.svg', title: 'Numpy' },
+	'pandas': 		{ src: 'pandas/pandas-original.svg', title: 'Pandas' },
+	'matplotlib': 	{ src: 'matplotlib/matplotlib-original.svg', title: 'Matplotlib' },
+	'plotly': 		{ src: 'plotly/plotly-original.svg', title: 'Plotly' },
+	'scikit-learn': 	{ src: 'scikitlearn/scikitlearn-original.svg', title: 'Scikit-learn' },
+	'pytorch': 		{ src: 'pytorch/pytorch-original.svg', title: 'Pytorch' }
 };
 
 const withBackdrop = new Set(['jupyter', 'latex']);
