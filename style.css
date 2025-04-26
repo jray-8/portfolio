@@ -216,12 +216,12 @@ a:active {
 }
 
 .project-title img {
-	width: 30px;
+	width: 20px;
 	display: block; /* Prevents extra space due to inline formatting context */
 }
 
 .project-title .icon-backdrop img {
-	width: 28px;
+	width: 18px;
 }
 
 .icon-backdrop {
