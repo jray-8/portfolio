@@ -51,6 +51,7 @@ const themes = [
 
 	new Theme('spirit.jpg', 			SPACE_GREEN),
 	new Theme('spirit-2.jpg', 			CLASSIC_BLUE),
+	new Theme('spirit-3.jpg', 			CLASSIC_BLUE),
 	
 	new Theme('space-py.jpg', 			PYRAMID),
 	new Theme('space-py-2.jpg', 		PYRAMID),
@@ -77,6 +78,7 @@ const themes = [
 	new Theme('green-ice.jpg', 			SHADOW),
 	new Theme('green-ice-2.jpg', 		SPACE_GREEN),
 	new Theme('green-ice-3.jpg', 		SPACE_GREEN),
+	new Theme('green-ice-4.jpg', 		SPACE_GREEN),
 
 	new Theme('portal.jpg',				SLATE_BLUE),
 	new Theme('plains.jpg', 			CASTLE_BROWN),
