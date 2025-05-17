@@ -159,5 +159,33 @@
 			"gitClone": "https://github.com/jray-8/simple-server.git",
 			"github": "https://github.com/jray-8/simple-server/blob/main/README.md"
 		}
+	},
+
+	{	"name": "Dynamic Programming (DP)",
+		"expanded": true,
+		"techStack": ["python", "jupyter"],
+		"links": {
+			"gitClone": "https://github.com/jray-8/dynamic-programming.git",
+			"github": "https://github.com/jray-8/dynamic-programming/blob/main/README.md"
+		},
+
+		"subprojects": [
+			{
+				"name": "Recurrence Relations",
+				"links": {
+					"nbviewer": "https://nbviewer.org/github/jray-8/dynamic-programming/blob/main/recurrence_relations.ipynb"
+				}
+			}
+		]
+	},
+
+	{	"name": "Heaps",
+		"techStack": ["jupyter"],
+		"preview": "https://jray-8.github.io/notebooks/exports/heaps.html"
+	},
+
+	{	"name": "Generating Permutations",
+		"techStack": ["jupyter"],
+		"preview": "https://jray-8.github.io/notebooks/exports/gen_permutations.html"
 	}
 ]
