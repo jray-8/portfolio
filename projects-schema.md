@@ -38,10 +38,13 @@ The root of the JSON file is an __array__ of __project objects__, each following
 - `techStack`: An array of __lowercase__ strings representing tools used in the project.
 	- Possible values:  
 	
-		`python`, `jupyter`, `latex`, `js`,  
-		`html`, `css`, `c`, `c++`, `julia`,  
-		`numpy`, `pandas`, `matplotlib`, `plotly`,  
-		`scikit-learn`, `pytorch`
+		`jupyter`, `latex`, `python`, `js`, `react`  
+		`html`, `css`, `json`, `c`, `c++`, `julia`,  
+		`r`, `numpy`, `pandas`, `matplotlib`, `plotly`,  
+		`scikit-learn`, `pytorch`, `tensorflow`, `streamlit`,  
+		`mysql`, `postgresql`, `apachespark`, `hadoop`,  
+		`docker`, `kubernetes`, `flask`, `android`, `kaggle`,  
+		`matlab`, `opencv`, `opengl`, `aws`
 
 - `image`: A URL or path to an image representing the project.
 

@@ -230,25 +230,42 @@ function generateIconLinks(links) {
 
 /** From https://devicon.dev */
 const devIcons = {
-	'python': 		{ src: 'python/python-original.svg', 				title: 'Python' },
 	'jupyter': 		{ src: 'jupyter/jupyter-original-wordmark.svg', 	title: 'Jupyter' },
 	'latex': 		{ src: 'latex/latex-original.svg', 					title: 'LaTeX'},
+	'python': 		{ src: 'python/python-original.svg', 				title: 'Python' },
 	'js': 			{ src: 'javascript/javascript-original.svg', 		title: 'JavaScript' },
+	'react': 		{ src: 'react/react-original.svg', 					title: 'React' },
 	'html': 		{ src: 'html5/html5-original.svg', 					title: 'HTML' },
 	'css': 			{ src: 'css3/css3-original.svg', 					title: 'CSS' },
 	'json': 		{ src: 'json/json-plain.svg', 						title: 'JSON' },
-	'c++': 			{ src: 'cplusplus/cplusplus-original.svg', 			title: 'C++' },
 	'c': 			{ src: 'c/c-original.svg', 							title: 'C Programming' },
+	'c++': 			{ src: 'cplusplus/cplusplus-original.svg', 			title: 'C++' },
 	'julia': 		{ src: 'julia/julia-original.svg', 					title: 'Julia' },
-	'numpy': 		{ src: 'numpy/numpy-original.svg', title: 'Numpy' },
-	'pandas': 		{ src: 'pandas/pandas-original.svg', title: 'Pandas' },
-	'matplotlib': 	{ src: 'matplotlib/matplotlib-original.svg', title: 'Matplotlib' },
-	'plotly': 		{ src: 'plotly/plotly-original.svg', title: 'Plotly' },
-	'scikit-learn': 	{ src: 'scikitlearn/scikitlearn-original.svg', title: 'Scikit-learn' },
-	'pytorch': 		{ src: 'pytorch/pytorch-original.svg', title: 'Pytorch' }
+	'r': 			{ src: 'r/r-original.svg', 							title: 'R' },
+	'numpy': 		{ src: 'numpy/numpy-original.svg', 					title: 'Numpy' },
+	'pandas': 		{ src: 'pandas/pandas-original.svg', 				title: 'Pandas' },
+	'matplotlib': 	{ src: 'matplotlib/matplotlib-original.svg', 		title: 'Matplotlib' },
+	'plotly': 		{ src: 'plotly/plotly-original.svg', 				title: 'Plotly' },
+	'scikit-learn': { src: 'scikitlearn/scikitlearn-original.svg', 		title: 'Scikit-learn' },
+	'pytorch': 		{ src: 'pytorch/pytorch-original.svg', 				title: 'Pytorch' },
+	'tensorflow': 	{ src: 'tensorflow/tensorflow-original.svg', 		title: 'TensorFlow' },
+	'streamlit': 	{ src: 'streamlit/streamlit-original.svg', 			title: 'Streamlit' },
+	'mysql': 		{ src: 'mysql/mysql-original.svg', 					title: 'MySQL' },
+	'postgresql': 	{ src: 'postgresql/postgresql-original.svg', 		title: 'PostgreSQL' },
+	'apachespark': 	{ src: 'apachespark/apachespark-original.svg', 		title: 'Apache Spark' },
+	'hadoop': 		{ src: 'hadoop/hadoop-original.svg', 				title: 'Apache Hadoop' },
+	'docker': 		{ src: 'docker/docker-plain.svg', 					title: 'Docker' },
+	'kubernetes': 	{ src: 'kubernetes/kubernetes-original.svg', 		title: 'Kubernetes' },
+	'flask': 		{ src: 'flask/flask-original.svg', 					title: 'Flask' },
+	'android': 		{ src: 'android/android-plain.svg', 				title: 'Android' },
+	'kaggle': 		{ src: 'kaggle/kaggle-original.svg', 				title: 'Kaggle' },
+	'matlab': 		{ src: 'matlab/matlab-original.svg', 				title: 'MATLAB' },
+	'opencv': 		{ src: 'opencv/opencv-original.svg', 				title: 'OpenCV' },
+	'opengl': 		{ src: 'opengl/opengl-original.svg', 				title: 'OpenGL' },
+	'aws': 			{ src: 'amazonwebservices/amazonwebservices-original-wordmark.svg', title: 'Amazon Web Services (AWS)' }
 };
 
-const withBackdrop = new Set(['jupyter', 'latex']);
+const withBackdrop = new Set(['jupyter', 'latex', 'pandas', 'flask', 'opengl', 'aws']);
 
 function generateTechStack(techStack) {
 	if (!techStack) return '';
