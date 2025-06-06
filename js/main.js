@@ -1,5 +1,6 @@
 const projectOrder = [
-	'Jeffrey\'s Portfolio',	
+	'Jeffrey\'s Portfolio',
+	'U.S. Presidents Dataset',
 	'Boids',
 	'The Mandelbrot Set',
 	'Cellular Automata',

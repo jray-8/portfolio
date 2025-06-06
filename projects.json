@@ -8,16 +8,44 @@
 		}
 	},
 
-	{	"name": "Combinatorics",
+	{	"name": "U.S. Presidents Dataset",
 		"expanded": true,
-		"techStack": ["latex", "jupyter", "matplotlib", "python"],
+		"techStack": ["pandas", "matplotlib", "jupyter"],
+		"description": "A deep dive into historical U.S. presidential data—cleaned, explored, and visualized. Features a Python module to automatically scrape fresh data or download a stable, versioned dataset. Includes statistical insights on presidential age trends across political eras.",
 		"links": {
-			"github": "https://github.com/jray-8/combinatorics/blob/main/formulas.ipynb"
+			"github": "https://github.com/jray-8/us-presidents-dataset/blob/main/README.md",
+			"gitClone": "https://github.com/jray-8/us-presidents-dataset.git"
 		},
 
 		"subprojects": [
 			{
-			"name": "Poker Hands",
+				"name": "Cleaning Walkthrough",
+				"description": "Step-by-step data wrangling from raw presidential records into a tidy, analysis-ready DataFrame.",
+				"links": {
+					"nbviewer": "https://nbviewer.org/github/jray-8/us-presidents-dataset/blob/main/notebooks/cleaning_walkthrough.ipynb"
+				}
+			},
+			{
+				"name": "Presidential Age EDA",
+				"description": "Uses statistical testing to explore how presidential age at inauguration evolved pre- vs post-WWII, with insights into party dynamics.",
+				"links": {
+					"nbviewer": "https://nbviewer.org/github/jray-8/us-presidents-dataset/blob/main/notebooks/presidential_age_eda.ipynb"
+				}
+			}
+		]
+	},
+
+	{	"name": "Combinatorics",
+		"expanded": true,
+		"techStack": ["latex", "jupyter", "matplotlib", "python"],
+		"links": {
+			"github": "https://github.com/jray-8/combinatorics/blob/main/formulas.ipynb",
+			"gitClone": "https://github.com/jray-8/combinatorics.git"
+		},
+
+		"subprojects": [
+			{
+				"name": "Poker Hands",
 				"description": 
 				"Analyze the number of ways to draw each poker hand, the probability of its draw, and the odds against drawing it.\nExplained from the ground up using LaTeX.",
 				"links": {
