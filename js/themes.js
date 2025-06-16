@@ -176,5 +176,5 @@ function randomizeCycleOrder() {
 document.addEventListener('DOMContentLoaded', () => {
 	preloadThemeImages();
 	randomizeCycleOrder();
-	chooseRandomTheme();
+	chooseTheme('bw-2.jpg');
 });
